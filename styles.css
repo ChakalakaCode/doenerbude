@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Arial Black', 'Helvetica', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.4;
     color: #000;
     overflow-x: hidden;
@@ -73,7 +73,7 @@ html {
     font-weight: 700;
     color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .logo-circle-new {
@@ -137,7 +137,7 @@ html {
     font-size: 7px;
     font-weight: bold;
     color: #333;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Poppins', sans-serif;
     letter-spacing: 1px;
     text-transform: none;
     font-style: italic;
@@ -391,7 +391,7 @@ html {
     text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.8);
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .menu-section {
@@ -417,7 +417,7 @@ html {
     text-shadow: none;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
     position: relative;
     display: inline-block;
     transform: skew(-10deg);
@@ -520,14 +520,14 @@ html {
     text-align: left;
     min-width: auto;
     box-shadow: none;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .item-name {
     font-weight: 400;
     color: #ffd700;
     font-size: 1rem;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .item-dots {
@@ -549,7 +549,7 @@ html {
     box-shadow: none;
     border: none;
     text-shadow: none;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .item-description {
@@ -558,7 +558,7 @@ html {
     font-style: normal;
     margin: 0.2rem 0 0 2rem;
     font-size: 0.8rem;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Pizza Section Special Styling */
@@ -649,7 +649,7 @@ html {
     border: none;
     border-bottom: 1px dotted #000;
     transform: skew(5deg);
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
 }
 
@@ -666,7 +666,7 @@ html {
     font-size: 0.9rem;
     margin-left: 1rem;
     font-weight: 900;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Hero Section Updates */
@@ -722,7 +722,7 @@ html {
     color: #ffd700;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
     letter-spacing: 2px;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
 }
 
@@ -758,7 +758,7 @@ html {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     font-weight: 400;
     letter-spacing: 1px;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Service Info */
@@ -957,7 +957,7 @@ html {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .video-subtitle {
@@ -1152,7 +1152,7 @@ html {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .quick-order-content p {
@@ -1177,7 +1177,7 @@ html {
     letter-spacing: 1px;
     border: none;
     position: relative;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
     transform: skew(-5deg);
 }
 
@@ -1264,7 +1264,7 @@ html {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .about-text p {
@@ -1892,7 +1892,7 @@ html {
     margin-bottom: 2rem;
     color: #ffd700;
     text-transform: uppercase;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
