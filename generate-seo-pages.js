@@ -199,7 +199,7 @@ const template = (location) => `<!DOCTYPE html>
     <title>${getPageTitle(location)}</title>
     <meta name="description" content="${getMetaDescription(location)}">
     <base href="/">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="canonical" href="https://www.doenerbude-beelen.de/doener-${location.name.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}" />
@@ -214,17 +214,17 @@ const template = (location) => `<!DOCTYPE html>
             <div class="nav-container">
                 <div class="logo">
                     <div class="logo-circle-new">
-                        <a href="index.html"><img src="berlin.jpg" alt="Dönerbude Logo" class="logo-image"></a>
+                        <a href="../index.html"><img src="../berlin.jpg" alt="Dönerbude Logo" class="logo-image"></a>
                     </div>
-                    <a href="/" style="text-decoration: none;">
+                    <a href="../index.html" style="text-decoration: none;">
                         <span class="logo-beelen">Beelen</span>
                     </a>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="index.html#home" class="nav-link">Home</a></li>
-                    <li><a href="index.html#menu" class="nav-link">Speisekarte</a></li>
-                    <li><a href="index.html#about" class="nav-link">Über uns</a></li>
-                    <li><a href="index.html#contact" class="nav-link">Kontakt</a></li>
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#menu" class="nav-link">Speisekarte</a></li>
+                    <li><a href="../index.html#about" class="nav-link">Über uns</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Kontakt</a></li>
                     <li><a href="tel:+4925868828866" class="nav-link order-btn">
                         <i class="fas fa-phone-alt"></i> 02586 88 2 88 66
                     </a></li>
@@ -280,7 +280,7 @@ const template = (location) => `<!DOCTYPE html>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>`;
 
