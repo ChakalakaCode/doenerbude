@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dönerbude Beelen - Standorte im Überblick</title>
+    <meta name="description" content="Finden Sie unsere Dönerbude in Ihrer Nähe. Berliner Döner im Münsterland - für Gäste aus dem gesamten Umkreis.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .locations-overview {
+            padding: 4rem 0;
+            background: #f9f9f9;
+            min-height: 70vh;
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .location-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+        @media (max-width: 768px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-circle-new">
+                        <a href="/"><img src="berlin.jpg" alt="Dönerbude Logo" class="logo-image"></a>
+                    </div>
+                    <a href="/" style="text-decoration: none;">
+                        <span class="logo-beelen">Beelen</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/#home" class="nav-link">Home</a></li>
+                    <li><a href="/#menu" class="nav-link">Speisekarte</a></li>
+                    <li><a href="/standorte.html" class="nav-link active">Standorte</a></li>
+                    <li><a href="/#about" class="nav-link">Über uns</a></li>
+                    <li><a href="/#contact" class="nav-link">Kontakt</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="locations-overview">
+        <div class="container">
+            <h1>Unsere Standorte im Überblick</h1>
+            <p>Entdecken Sie unseren originalen Berliner Döner in Ihrer Nähe</p>
+            
+            <div class="location-grid" id="locationGrid">
+                <!-- Wird per JavaScript befüllt -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dönerbude Beelen</h3>
+                    <p>Ihr Ansprechpartner für originalen Berliner Döner im Münsterland.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>Warendorfer Str. 21<br>48361 Beelen</p>
+                    <p>Tel: <a href="tel:+4925868828866">02586 88 2 88 66</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Öffnungszeiten</h3>
+                    <p>Mo-Sa: 11:00 - 22:00 Uhr<br>So: Geschlossen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Dönerbude Beelen | 
+                   <a href="/impressum.html">Impressum</a> | 
+                   <a href="/datenschutz.html">Datenschutz</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Liste der Standorte
+        const locations = [
+            { name: 'Münster', distance: 35, type: 'city' },
+            { name: 'Ostbevern', distance: 15, type: 'village' },
+            { name: 'Telgte', distance: 25, type: 'town' },
+            { name: 'Warendorf', distance: 15, type: 'town' },
+            { name: 'Sassenberg', distance: 10, type: 'town' },
+            { name: 'Gütersloh', distance: 30, type: 'city' },
+            { name: 'Rheda-Wiedenbrück', distance: 25, type: 'city' },
+            { name: 'Harsewinkel', distance: 20, type: 'town' },
+            { name: 'Versmold', distance: 15, type: 'town' },
+            { name: 'Halle (Westf.)', distance: 25, type: 'town' },
+            { name: 'Borgholzhausen', distance: 35, type: 'town' },
+            { name: 'Beckum', distance: 20, type: 'town' },
+            { name: 'Oelde', distance: 15, type: 'town' },
+            { name: 'Lippstadt', distance: 35, type: 'town' },
+            { name: 'Rietberg', distance: 30, type: 'town' },
+            { name: 'Herzebrock-Clarholz', distance: 20, type: 'village' },
+            { name: 'Ennigerloh', distance: 15, type: 'town' },
+            { name: 'Ahlen', distance: 20, type: 'town' },
+            { name: 'Drensteinfurt', distance: 25, type: 'town' },
+            { name: 'Sendenhorst', distance: 15, type: 'town' },
+            { name: 'Everswinkel', distance: 10, type: 'village' }
+        ];
+
+        // Sortiere nach Entfernung
+        locations.sort((a, b) => a.distance - b.distance);
+        
+        // Füge Standorte zur Seite hinzu
+        const grid = document.getElementById('locationGrid');
+        locations.forEach(location => {
+            const card = document.createElement('div');
+            card.className = 'location-card';
+            card.innerHTML = `
+                <h3>${location.name}</h3>
+                <p>Nur ${location.distance} km entfernt</p>
+                <a href="/location-pages/doener-${location.name.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}.html" class="btn">Zum Standort</a>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
