@@ -2319,6 +2319,60 @@ html {
     }
 }
 
+/* Location Pages */
+.location-page {
+    padding-top: 120px; /* Add padding to account for fixed header */
+}
+
+.location-hero {
+    padding: 2rem 0;
+    background: #fff;
+    margin-top: -40px; /* Compensate for body padding */
+}
+
+.location-content {
+    margin: 2rem 0;
+    line-height: 1.8;
+    color: #333;
+}
+
+.location-content h2 {
+    color: #000;
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+}
+
+.location-content p {
+    margin-bottom: 1.5rem;
+}
+
+.cta-section {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 3rem 0;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.cta-section .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #000;
+    color: #ffd700;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cta-section .btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 /* Legal Pages Styles */
 .legal-content {
     padding: 120px 0 80px;
