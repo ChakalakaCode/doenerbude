@@ -268,7 +268,7 @@ const template = (location) => `<!DOCTYPE html>
                 </div>
                 <div class="footer-section">
                     <h3>Öffnungszeiten</h3>
-                    <p>Mo-Sa: 11:00 - 22:00 Uhr<br>So: Geschlossen</p>
+                    <p>Montag - Sonntag: 11:00 - 22:00 Uhr</p>
                 </div>
             </div>
             <div class="footer-bottom">
