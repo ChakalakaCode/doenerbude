@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dönerbude Beelen - Standorte im Überblick</title>
-    <meta name="description" content="Finden Sie unsere Dönerbude in Ihrer Nähe. Berliner Döner im Münsterland - für Gäste aus dem gesamten Umkreis.">
+    <title>Döner im Umkreis von Beelen | Dönerbude Beelen</title>
+    <meta name="description" content="Finden Sie die beste Dönerbude in Ihrer Nähe. Wir beliefern den gesamten Umkreis von Beelen mit originalem Berliner Döner.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="canonical" href="https://www.doenerbude-beelen.de/umkreis" />
     <style>
         .locations-overview {
             padding: 4rem 0;
             background: #f9f9f9;
             min-height: 70vh;
-        } 
+        }
         .location-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -30,6 +32,10 @@
         .location-card:hover {
             transform: translateY(-5px);
         }
+        .back-to-home {
+            text-align: center;
+            margin: 2rem 0;
+        }
         @media (max-width: 768px) {
             .location-grid {
                 grid-template-columns: 1fr;
@@ -39,7 +45,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -54,7 +59,7 @@
                 <ul class="nav-menu">
                     <li><a href="/#home" class="nav-link">Home</a></li>
                     <li><a href="/#menu" class="nav-link">Speisekarte</a></li>
-                    <li><a href="/#standorte.html" class="nav-link active">Standorte</a></li>
+                    <li><a href="umkreis.html" class="nav-link active">Umkreis</a></li>
                     <li><a href="/#about" class="nav-link">Über uns</a></li>
                     <li><a href="/#contact" class="nav-link">Kontakt</a></li>
                 </ul>
@@ -64,16 +69,21 @@
 
     <main class="locations-overview">
         <div class="container">
-            <h1>Unsere Standorte im Überblick</h1>
-            <p>Entdecken Sie unseren originalen Berliner Döner in Ihrer Nähe</p>
+            <div class="back-to-home">
+                <a href="/" class="btn">
+                    <i class="fas fa-home"></i> Zurück zur Dönerbude Beelen
+                </a>
+            </div>
+            
+            <h1>Döner im Umkreis von Beelen</h1>
+            <p>Ihre Suche nach leckerem Döner in der Nähe führt Sie zu uns nach Beelen</p>
             
             <div class="location-grid" id="locationGrid">
-                <!-- Wird per JavaScript befüllt -->
+                <!-- Will be populated by JavaScript -->
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -92,7 +102,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <script>document.write(new Date().getFullYear())</script> Dönerbude Beelen | 
+                <p>&copy; 2025 Dönerbude Beelen | 
                    <a href="/impressum.html">Impressum</a> | 
                    <a href="/datenschutz.html">Datenschutz</a>
                 </p>
@@ -134,11 +144,11 @@
         locations.forEach(location => {
             const card = document.createElement('div');
             card.className = 'location-card';
-         card.innerHTML = `
-    <h3>${location.name}</h3>
-    <p>Nur ${location.distance} km entfernt</p>
-    <a href="location-pages/doener-${location.name.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}.html" class="btn">Zum Standort</a>
-`;
+            card.innerHTML = `
+                <h3>${location.name}</h3>
+                <p>Nur ${location.distance} km entfernt</p>
+                <a href="location-pages/doener-${location.name.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}.html" class="btn">Zum Standort</a>
+            `;
             grid.appendChild(card);
         });
     </script>

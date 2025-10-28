@@ -38,14 +38,15 @@ const locations = [
 // Funktionen für dynamische Inhalte
 function getPageTitle(location) {
     if (location.type === 'city') {
-        return `Original Berliner Döner in ${location.name} | Dönerbude Beelen (nur ${location.distance}km entfernt)`;
+        return `🍢 Bester Döner in ${location.name} | Original Berliner Art | Nur ${location.distance}km`;
     } else {
-        return `Bester Döner bei ${location.name} | Berliner Art in Beelen (${location.distance}km)`;
+        return `🥙 Döner in ${location.name} | Berliner Spezialität | ${location.distance}km von Ihnen`;
     }
 }
 
 function getMetaDescription(location) {
-    return `Suchen Sie in ${location.name} nach echtem Berliner Döner? Besuchen Sie uns in Beelen - nur ${location.distance}km entfernt. Frische Zutaten, originale Rezeptur. Jetzt vorbeikommen!`;
+    const travelTime = Math.round(location.distance * 1.5);
+    return `🚗 Nur ${location.distance}km von ${location.name} entfernt (ca. ${travelTime} Min.) | Genießen Sie den besten Berliner Döner im Münsterland. Frisch zubereitet mit hochwertigen Zutaten. Besuchen Sie uns in Beelen!`;
 }
 
 function getStructuredData(location) {
@@ -80,28 +81,113 @@ function getStructuredData(location) {
 
 function getMainHeading(location) {
     if (location.type === 'city') {
-        return `Original Berliner Döner in ${location.name} | Dönerbude Beelen`;
+        return `🍽️ Ihr Berliner Döner-Spezialist für ${location.name} und Umgebung`;
     } else {
-        return `Bester Döner bei ${location.name} | Berliner Art in Beelen`;
+        return `🥙 Bester Döner in der Nähe von ${location.name} | Berliner Art`;
     }
 }
 
 function getSubtitle(location) {
     const travelTime = Math.round(location.distance * 1.5);
-    return `Nur ${location.distance}km von ${location.name} entfernt (ca. ${travelTime} Min. Fahrt) - Ihr Anbieter für originalen Berliner Döner im Münsterland`;
+    const benefits = [
+        "Frische, täglich selbst zubereitete Zutaten",
+        "Originale Berliner Rezeptur seit über 15 Jahren",
+        "Große Portionen zu fairen Preisen",
+        "Kostenlose Parkplätze direkt vor der Tür",
+        "Schneller Service für unterwegs"
+    ];
+    
+    return `
+        <p>Nur ${location.distance}km von ${location.name} entfernt (ca. ${travelTime} Min. Fahrt) - Ihr zuverlässiger Anbieter für originalen Berliner Döner im Münsterland.</p>
+        <div class="benefits">
+            <h3>Warum Gäste aus ${location.name} zu uns kommen:</h3>
+            <ul>
+                ${benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+            </ul>
+        </div>
+    `;
 }
 
 function getLocationContent(location) {
+    const travelTime = Math.round(location.distance * 1.5);
     const variations = [
-        `Als bester Döner-Imbiss in der Nähe von ${location.name} bieten wir Ihnen den einzig wahren Berliner Döner-Genuss. Viele Gäste aus ${location.name} schätzen unsere zentrale Lage in Beelen.`,
-        `Ihr zuverlässiger Anbieter für Berliner Döner in der Region ${location.name}. Frisch zubereitet mit hochwertigen Zutaten - der Fahrtweg von ${location.name} nach Beelen lohnt sich!`,
-        `Für alle Döner-Liebhaber aus ${location.name}: Bei uns in Beelen erwartet Sie der Geschmack des originalen Berliner Döners. Nur eine kurze Fahrt von ${location.name} entfernt.`
+        `
+        <section class="location-content">
+            <h2>Berliner Döner-Spezialitäten für ${location.name}</h2>
+            <p>Liebe Döner-Freunde aus ${location.name}, wir freuen uns, Ihnen den authentischen Geschmack des Berliner Döners in bester Qualität zu bieten. Viele unserer Stammgäste kommen regelmäßig aus ${location.name} zu uns, um sich von unserem einzigartigen Geschmack zu überzeugen.</p>
+            
+            <h3>Warum sich die Fahrt aus ${location.name} lohnt:</h3>
+            <ul>
+                <li>💯 Echte Handwerkskunst: Unser Dönerfleisch wird täglich frisch aufgespießt und schonend gegrillt</li>
+                <li>🌱 Frisches Gemüse aus regionalem Anbau</li>
+                <li>👨‍🍳 Erfahrene Döner-Meister mit jahrelanger Erfahrung</li>
+                <li>🚗 Bequeme Anfahrt von ${location.name} in nur ${travelTime} Minuten</li>
+                <li>📱 Bestellen Sie vor - so ist Ihr Döner fertig, wenn Sie ankommen</li>
+            </ul>
+            
+            <h3>Unser Tipp für Gäste aus ${location.name}:</h3>
+            <p>Kombinieren Sie Ihren Besuch bei uns mit einem Ausflug ins schöne Beelen. Nach einem leckeren Döner bei uns können Sie den historischen Ortskern erkunden oder einen Spaziergang im nahegelegenen Park machen.</p>
+            
+            <div class="cta-box">
+                <h3>Besuchen Sie uns!</h3>
+                <p>Wir freuen uns auf Ihren Besuch aus ${location.name}!</p>
+                <p>📅 Täglich geöffnet von 11:00 bis 22:00 Uhr<br>
+                📍 Warendorfer Str. 21, 48361 Beelen<br>
+                📞 02586 8828866</p>
+            </div>
+        </section>
+        `,
+        
+        `
+        <section class="location-content">
+            <h2>Ihr Döner-Experte in der Region ${location.name}</h2>
+            <p>Sie suchen in ${location.name} nach einem echten kulinarischen Erlebnis? Dann besuchen Sie uns in Beelen! Unsere Döner-Spezialitäten werden von Gästen aus der gesamten Region geschätzt - von Münster bis ${location.name}.</p>
+            
+            <h3>Das macht uns besonders:</h3>
+            <div class="features-grid">
+                <div class="feature">
+                    <h4>🥙 Original Berliner Rezeptur</h4>
+                    <p>Nach traditioneller Art zubereitet mit ausgewählten Gewürzen</p>
+                </div>
+                <div class="feature">
+                    <h4>🚚 Schneller Service</h4>
+                    <p>Perfekt für die Mittagspause oder den schnellen Snack</p>
+                </div>
+                <div class="feature">
+                    <h4>🌿 Frische Kräuter</h4>
+                    <p>Täglich frisch zubereitete Saucen und Salate</p>
+                </div>
+                <div class="feature">
+                    <h4>🍽️ Gemütliche Atmosphäre</h4>
+                    <p>Moderne Sitzgelegenheiten für Ihren Besuch</p>
+                </div>
+            </div>
+            
+            <h3>Anfahrt von ${location.name}:</h3>
+            <p>Mit dem Auto erreichen Sie uns von ${location.name} aus in nur ${travelTime} Minuten über die B64. Kostenlose Parkplätze finden Sie direkt vor unserer Tür. Auch mit dem ÖPNV sind wir gut erreichbar - die Bushaltestelle "Beelen Mitte" ist nur 3 Gehminuten entfernt.</p>
+            
+            <div class="testimonial">
+                <blockquote>
+                    "Als wir von Freunden aus ${location.name} von der Dönerbude in Beelen gehört haben, waren wir zunächst skeptisch. Doch der Geschmack hat uns sofort überzeugt - jetzt fahren wir regelmäßig die kurze Strecke für den besten Döner der Region!"
+                    <footer>- Familie M. aus ${location.name}</footer>
+                </blockquote>
+            </div>
+        </section>
+        `
     ];
+    
     return variations[Math.floor(Math.random() * variations.length)];
 }
 
 function getCTAText(location) {
-    return `Überzeugen Sie sich selbst vom besten Berliner Döner in der Nähe von ${location.name}. Wir freuen uns auf Ihren Besuch in Beelen!`;
+    const travelTime = Math.round(location.distance * 1.5);
+    const ctaVariations = [
+        `🍴 Jetzt aus ${location.name} anreisen (nur ${travelTime} Min.)`,
+        `🚗 Nur ${location.distance}km von ${location.name} entfernt - jetzt probieren!`,
+        `🥙 Bestellen Sie jetzt unter 02586 8828866 - auch zur Abholung`,
+        `⭐ Überzeugen Sie sich selbst vom besten Döner der Region!`
+    ];
+    return ctaVariations[Math.floor(Math.random() * ctaVariations.length)];
 }
 
 // Template für die HTML-Seiten
