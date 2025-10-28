@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+ 
 // Liste der Orte im 50km Umkreis um Beelen mit Entfernungen
 const locations = [
     { name: 'Münster', distance: 35, type: 'city' },
@@ -219,6 +219,35 @@ function generatePages() {
     
     console.log('Alle SEO-Seiten wurden erfolgreich generiert!');
 }
+// Fügen Sie diese Funktion zu Ihrer generate-seo-pages.js hinzu
+function addBackLinksToLocationPages() {
+    const locationPagesDir = path.join(__dirname, 'location-pages');
+    const files = fs.readdirSync(locationPagesDir);
+    
+    files.forEach(file => {
+        if (file.endsWith('.html')) {
+            const filePath = path.join(locationPagesDir, file);
+            let content = fs.readFileSync(filePath, 'utf8');
+            
+            // Füge den Standorte-Link zur Navigation hinzu
+            content = content.replace(
+                '<li><a href="/#contact" class="nav-link">Kontakt</a></li>',
+                '<li><a href="/#contact" class="nav-link">Kontakt</a></li>\n                    <li><a href="/standorte.html" class="nav-link">Standorte</a></li>'
+            );
+            
+            // Füge einen "Zurück zur Übersicht"-Link hinzu
+            const backLink = '\n    <div class="container" style="margin: 2rem 0; text-align: center;">\n        <a href="/standorte.html" class="btn">\n            <i class="fas fa-arrow-left"></i> Zurück zur Standortübersicht\n        </a>\n    </div>\n';
+            content = content.replace('</main>', backLink + '</main>');
+            
+            fs.writeFileSync(filePath, content);
+        }
+    });
+    
+    console.log('Standortseiten wurden aktualisiert!');
+}
+
+// Rufen Sie die Funktion am Ende Ihrer generate-seo-pages.js auf
+addBackLinksToLocationPages();
 
 // Sitemap erstellen
 function createSitemap(outputDir) {
