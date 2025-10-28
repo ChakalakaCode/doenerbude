@@ -198,7 +198,7 @@ const template = (location) => `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${getPageTitle(location)}</title>
     <meta name="description" content="${getMetaDescription(location)}">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="canonical" href="https://www.doenerbude-beelen.de/doener-${location.name.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}" />
@@ -213,7 +213,7 @@ const template = (location) => `<!DOCTYPE html>
             <div class="nav-container">
                 <div class="logo">
                     <div class="logo-circle-new">
-                        <a href="/"><img src="../berlin.jpg" alt="Dönerbude Logo" class="logo-image"></a>
+                        <a href="/"><img src="/berlin.jpg" alt="Dönerbude Logo" class="logo-image"></a>
                     </div>
                     <a href="/" style="text-decoration: none;">
                         <span class="logo-beelen">Beelen</span>
@@ -279,7 +279,7 @@ const template = (location) => `<!DOCTYPE html>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>`;
 
