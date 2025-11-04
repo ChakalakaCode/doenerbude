@@ -2299,28 +2299,34 @@ html {
     }
     
     .menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
         max-width: 100%;
         margin: 0 auto;
         padding: 0 0.75rem;
     }
     
-    /* Make single items full width */
-    .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) {
-        grid-column: 1 / -1;
+    /* Grid layout for categories with multiple items */
+    .menu-section:has(> .menu-items-grid > .menu-item-row:not(:only-child)) .menu-items-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    /* Style for grid items */
+    .menu-section:has(> .menu-items-grid > .menu-item-row:not(:only-child)) .menu-item-row {
+        margin: 0;
+        height: 100%;
     }
     
     .menu-section .menu-items-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
         width: 100%;
     }
     
     /* Single item category takes full width with enhanced styling */
     .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) .menu-items-grid {
-        grid-template-columns: 1fr;
+        display: block;
         max-width: 100%;
     }
     
@@ -2331,6 +2337,8 @@ html {
         border-radius: 16px;
         box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         border: 2px solid #ffd700;
+        max-width: 100%;
+        margin: 0 auto;
     }
     
     .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) .menu-item-image {
@@ -2367,11 +2375,6 @@ html {
         color: white;
     }
     
-    /* Ensure single item takes full width */
-    .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) .menu-item-row {
-        max-width: 100%;
-        margin: 0 auto;
-    }
 
     .menu-section .menu-item-row {
         display: flex;
