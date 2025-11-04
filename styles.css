@@ -2131,10 +2131,10 @@ html {
     .hero-image {
         order: 2;
         position: fixed;
-        bottom: 20px;
+        top: 20px;
         right: 20px;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         z-index: 1000;
         margin: 0;
         display: flex;
@@ -2142,7 +2142,7 @@ html {
         align-items: center;
         background: rgba(0, 0, 0, 0.7);
         border-radius: 50%;
-        padding: 10px;
+        padding: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
@@ -2152,6 +2152,11 @@ html {
         max-width: 100% !important;
         max-height: 100% !important;
         margin: 0;
+    }
+    
+    /* Add padding to the bottom of the page to prevent content from being hidden behind the order button */
+    body {
+        padding-bottom: 80px;
     }
     
     .hero-buttons {
