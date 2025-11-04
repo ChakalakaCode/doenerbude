@@ -2131,19 +2131,20 @@ html {
     .hero-image {
         order: 2;
         position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
+        top: 15px;
+        right: 15px;
+        width: 80px;
+        height: 80px;
         z-index: 1000;
         margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         background: rgba(0, 0, 0, 0.7);
+        border: 2px solid #ffd700;
         border-radius: 50%;
-        padding: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
     
     .hero-logo-animation {
@@ -2152,11 +2153,27 @@ html {
         max-width: 100% !important;
         max-height: 100% !important;
         margin: 0;
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
     }
     
     /* Add padding to the bottom of the page to prevent content from being hidden behind the order button */
     body {
-        padding-bottom: 80px;
+        padding-bottom: 90px;
+    }
+    
+    /* Make sure the logo doesn't overlap with the navigation */
+    @media (max-width: 480px) {
+        .hero-image {
+            width: 70px;
+            height: 70px;
+            top: 10px;
+            right: 10px;
+        }
+        
+        /* Add more space for the order button */
+        .hero-buttons {
+            margin-bottom: 20px;
+        }
     }
     
     .hero-buttons {
