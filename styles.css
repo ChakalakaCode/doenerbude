@@ -2065,33 +2065,50 @@ html {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 2rem 0.5rem;
+        padding: 2.5rem 0.75rem 4rem;
         min-height: auto;
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
         background-attachment: scroll;
+        gap: 1.5rem;
     }
     
     .hero-content {
-        padding: 1rem 0.5rem;
+        order: 1;
+        padding: 1.25rem 0.5rem 0;
         width: 100%;
         max-width: 100%;
     }
     
     .hero-logo-animation {
-        width: 280px;
-        height: 280px;
+        width: 300px;
+        height: 300px;
         max-width: 85vw;
         max-height: 85vw;
     }
     
     .hero-title {
-        font-size: 1.8rem;
-        line-height: 1.2;
+        font-size: 2.6rem;
+        line-height: 1.15;
         margin-bottom: 1rem;
         word-wrap: break-word;
         overflow-wrap: break-word;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-image {
+        order: 2;
+        position: sticky;
+        top: 120px;
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: center;
     }
     
     .hero-buttons {
@@ -2103,9 +2120,10 @@ html {
     
     .hero-buttons .btn {
         width: 100%;
-        max-width: 300px;
-        min-height: 48px;
+        max-width: 320px;
+        min-height: 50px;
         touch-action: manipulation;
+        font-size: 1.05rem;
     }
     
     a, button {
@@ -2189,9 +2207,54 @@ html {
     }
     
     .menu-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
     }
     
+    .menu-section .menu-items-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .menu-section .menu-item-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 0;
+        padding: 1.25rem 1rem;
+    }
+
+    .menu-section .menu-item-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        order: 0;
+    }
+
+    .menu-section .menu-item-image img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .menu-section .menu-item-details {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        column-gap: 0.5rem;
+        row-gap: 0.25rem;
+    }
+
+    .menu-section .item-description {
+        margin: 0.5rem 0 0;
+        grid-column: 1 / -1;
+        font-size: 0.85rem;
+    }
+
+    .menu-section .item-dots {
+        display: none;
+    }
+
     .phone-number {
         font-size: 1.3rem;
         padding: 1rem 1.5rem;
@@ -2239,13 +2302,15 @@ html {
     }
     
     .hero-title {
-        font-size: 1.4rem;
-        padding: 0 0.5rem;
+        font-size: 2rem;
+        line-height: 1.2;
+        padding: 0 0.75rem;
     }
     
     .hero-subtitle {
-        font-size: 0.95rem;
-        padding: 0 0.5rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0 0.75rem;
     }
     
     .btn {
