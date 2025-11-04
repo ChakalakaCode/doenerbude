@@ -2300,6 +2300,15 @@ html {
         gap: 0.75rem;
         margin-bottom: 0;
         padding: 1.25rem 1rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .menu-section .menu-item-row:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
 
     .menu-section .menu-item-image {
@@ -2317,15 +2326,44 @@ html {
     .menu-section .menu-item-details {
         width: 100%;
         display: grid;
-        grid-template-columns: auto 1fr auto;
-        column-gap: 0.5rem;
-        row-gap: 0.25rem;
+        grid-template-columns: 24px 1fr auto;
+        column-gap: 0.75rem;
+        row-gap: 0.5rem;
+        align-items: center;
     }
 
     .menu-section .item-description {
         margin: 0.5rem 0 0;
-        grid-column: 1 / -1;
-        font-size: 0.85rem;
+        grid-column: 2 / -1;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #555;
+    }
+    
+    .menu-section .item-number {
+        font-weight: 700;
+        color: #ffd700;
+        background: #000;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+    
+    .menu-section .item-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #333;
+    }
+    
+    .menu-section .item-price {
+        font-weight: 700;
+        color: #e67e22;
+        font-size: 1.1rem;
+        white-space: nowrap;
     }
 
     .menu-section .item-dots {
@@ -2349,17 +2387,33 @@ html {
     .menu-item-row {
         grid-template-columns: 1fr;
         gap: 1rem;
-        padding: 1.5rem 1rem;
+        padding: 1.25rem;
         margin-bottom: 1rem;
         width: 100%;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
     
     .menu-item-image {
         width: 100%;
-        height: 220px;
+        height: 180px;
         order: -1;
         margin-bottom: 1rem;
-        border-radius: 12px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .menu-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-item-image:active img {
+        transform: scale(1.03);
     }
     
     .menu-item-details {

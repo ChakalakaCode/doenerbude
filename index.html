@@ -879,6 +879,44 @@
         </div>
     </footer>
 
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="image-zoom-modal">
+        <img id="zoomedImage" class="image-zoom-content" src="" alt="Vergrößertes Bild">
+    </div>
+
+    <script>
+        // Image Zoom Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('zoomedImage');
+            const menuImages = document.querySelectorAll('.menu-item-image img');
+
+            // Add click event to all menu images
+            menuImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                    modalImg.src = this.src;
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                });
+            });
+
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target === modalImg) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
