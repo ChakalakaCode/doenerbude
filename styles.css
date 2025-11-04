@@ -2048,14 +2048,40 @@ html {
         position: fixed;
         left: -100%;
         top: 70px;
+        bottom: 0;
         flex-direction: column;
-        background-color: #000;
+        background-color: rgba(0, 0, 0, 0.98);
         width: 100%;
-        text-align: center;
+        text-align: left;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3);
-        padding: 2rem 0;
+        padding: 2rem 1.5rem;
         border-top: 2px solid #ffd700;
+        overflow-y: auto;
+        z-index: 999;
+    }
+    
+    .nav-menu .nav-link {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: #fff;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        text-align: left;
+    }
+    
+    .nav-menu .nav-link:hover {
+        color: #ffd700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+    
+    .nav-menu .order-btn {
+        margin: 1.5rem 1.5rem 1rem;
+        text-align: center;
+        background: #ffd700;
+        color: #000 !important;
+        border-radius: 8px;
+        font-weight: 700;
     }
     
     .nav-menu.active {
@@ -2104,11 +2130,28 @@ html {
 
     .hero-image {
         order: 2;
-        position: sticky;
-        top: 120px;
-        margin-top: 0.5rem;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+        z-index: 1000;
+        margin: 0;
         display: flex;
         justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-logo-animation {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        margin: 0;
     }
     
     .hero-buttons {
@@ -2216,6 +2259,18 @@ html {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
     }
+    
+    /* Single item category takes full width */
+    .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) .menu-items-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+    
+    /* Ensure single item takes full width */
+    .menu-section:has(> .menu-items-grid > .menu-item-row:only-child) .menu-item-row {
+        max-width: 100%;
+        margin: 0 auto;
+    }
 
     .menu-section .menu-item-row {
         display: flex;
@@ -2274,6 +2329,7 @@ html {
         gap: 1rem;
         padding: 1.5rem 1rem;
         margin-bottom: 1rem;
+        width: 100%;
     }
     
     .menu-item-image {
