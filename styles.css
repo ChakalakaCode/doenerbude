@@ -2311,13 +2311,18 @@ html {
     .menu-section:has(> .menu-items-grid > .menu-item-row:not(:only-child)) .menu-items-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 1.25rem;
+        padding: 0.5rem;
     }
     
     /* Style for grid items */
     .menu-section:has(> .menu-items-grid > .menu-item-row:not(:only-child)) .menu-item-row {
         margin: 0;
         height: 100%;
+        padding: 1.25rem 1rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
     
     .menu-section .menu-items-grid {
@@ -2379,12 +2384,12 @@ html {
     .menu-section .menu-item-row {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.9rem;
         margin-bottom: 0;
         padding: 1.25rem 1rem;
         background: #fff;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
         border: 1px solid rgba(0,0,0,0.05);
         height: 100%;
@@ -2398,7 +2403,7 @@ html {
     .menu-section .menu-item-image {
         width: 100%;
         height: 0;
-        padding-bottom: 75%; /* 4:3 aspect ratio */
+        padding-bottom: 65%; /* Slightly wider aspect ratio */
         position: relative;
         order: 0;
         border-radius: 8px;
@@ -2432,36 +2437,40 @@ html {
     .menu-section .item-description {
         margin: 0.5rem 0 0;
         grid-column: 2 / -1;
-        font-size: 0.9rem;
+        font-size: 1rem;
         line-height: 1.5;
         color: #555;
+        letter-spacing: 0.1px;
     }
     
     .menu-section .item-number {
         font-weight: 700;
-        color: #ffd700;
-        background: #000;
-        width: 24px;
-        height: 24px;
+        color: #fff;
+        background: #e67e22;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     .menu-section .item-name {
         font-weight: 600;
-        font-size: 1rem;
-        color: #333;
-        line-height: 1.3;
+        font-size: 1.1rem;
+        color: #222;
+        line-height: 1.4;
+        letter-spacing: 0.2px;
     }
     
     .menu-section .item-price {
         font-weight: 700;
         color: #e67e22;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         white-space: nowrap;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
 
     .menu-section .item-dots {
