@@ -11,6 +11,43 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .menu-section-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+        .menu-section-header:hover {
+            color: #e74c3c;
+        }
+        .menu-section-header i {
+            transition: transform 0.3s ease;
+        }
+        .menu-section-header.collapsed i {
+            transform: rotate(-90deg);
+        }
+        .menu-section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .menu-section-content.show {
+            max-height: 5000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .menu-item-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -149,56 +186,67 @@
             
             <!-- Original Berliner Döner Section -->
             <div class="menu-section">
-                <h3 class="menu-section-title">ORIGINAL BERLINER DÖNER TASCHE</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item-row">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&h=400&fit=crop&q=90" alt="Döner Tasche" loading="lazy">
-                        </div>
-                        <div class="menu-item-details">
-                            <span class="item-number">01</span>
-                            <span class="item-name">Original Berliner Döner Tasche</span>
-                            <span class="item-dots">......................................</span>
-                            <span class="item-price">7,50</span>
-                            <p class="item-description">Nach authentischem Berliner Rezept mit Kalb/Hähnchen, frischem Salat und Original-Sauce</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-section">
-                <h3 class="menu-section-title">ORIGINAL BERLINER DÖNER TELLER</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item-row">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&h=400&fit=crop&q=90" alt="Döner Teller" loading="lazy">
-                        </div>
-                        <div class="menu-item-details">
-                            <span class="item-number">02</span>
-                            <span class="item-name">Original Berliner Döner Teller</span>
-                            <span class="item-dots">......................................</span>
-                            <span class="item-price">10,50</span>
-                            <p class="item-description">Authentisches Berliner Döner-Fleisch (Kalb/Hähnchen) mit Pommes und frischem Salat</p>
+                <h3 class="menu-section-header">
+                    <span>ORIGINAL BERLINER DÖNER TASCHE <i class="fas fa-chevron-down"></i></span>
+                </h3>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
+                        <div class="menu-item-row">
+                            <div class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&h=400&fit=crop&q=90" alt="Döner Tasche" loading="lazy">
+                            </div>
+                            <div class="menu-item-details">
+                                <span class="item-number">01</span>
+                                <span class="item-name">Original Berliner Döner Tasche</span>
+                                <span class="item-dots">......................................</span>
+                                <span class="item-price">7,50 €</span>
+                                <p class="item-description">Nach authentischem Berliner Rezept mit Kalb/Hähnchen, frischem Salat und Original-Sauce</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="menu-section">
-                <h3 class="menu-section-title">BERLINER DÜRÜM DÖNER</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item-row">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop&q=90" alt="Dürüm Döner" loading="lazy">
-                        </div>
-                        <div class="menu-item-details">
-                            <span class="item-number">03</span>
-                            <span class="item-name">Berliner Dürüm Döner</span>
-                            <span class="item-dots">......................................</span>
-                            <span class="item-price">7,50</span>
-                            <p class="item-description">Original Berliner Döner-Fleisch (Kalb/Hähnchen) im Yufka-Teig mit Salat und Sauce</p>
+                <h3 class="menu-section-header">
+                    <span>ORIGINAL BERLINER DÖNER TELLER <i class="fas fa-chevron-down"></i></span>
+                </h3>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
+                        <div class="menu-item-row">
+                            <div class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&h=400&fit=crop&q=90" alt="Döner Teller" loading="lazy">
+                            </div>
+                            <div class="menu-item-details">
+                                <span class="item-number">02</span>
+                                <span class="item-name">Original Berliner Döner Teller</span>
+                                <span class="item-dots">......................................</span>
+                                <span class="item-price">10,50 €</span>
+                                <p class="item-description">Authentisches Berliner Döner-Fleisch (Kalb/Hähnchen) mit Pommes und frischem Salat</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h3 class="menu-section-header">
+                    <span>BERLINER DÜRÜM DÖNER <i class="fas fa-chevron-down"></i></span>
+                </h3>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
+                        <div class="menu-item-row">
+                            <div class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop&q=90" alt="Dürüm Döner" loading="lazy">
+                            </div>
+                            <div class="menu-item-details">
+                                <span class="item-number">03</span>
+                                <span class="item-name">Berliner Dürüm Döner</span>
+                                <span class="item-dots">......................................</span>
+                                <span class="item-price">7,50 €</span>
+                                <p class="item-description">Original Berliner Döner-Fleisch (Kalb/Hähnchen) im Yufka-Teig mit Salat und Sauce</p>
+                            </div>
+                        </div>
                 </div>
             </div>
 
@@ -709,19 +757,22 @@
 
             <!-- Vegetarisch Section -->
             <div class="menu-section">
-                <h3 class="menu-section-title">VEGETARISCH</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item-row">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?w=600&h=400&fit=crop&q=90" alt="Falafel Tasche" loading="lazy">
+                <h3 class="menu-section-header">
+                    <span>VEGETARISCH <i class="fas fa-chevron-down"></i></span>
+                </h3>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
+                        <div class="menu-item-row">
+                            <div class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?w=600&h=400&fit=crop&q=90" alt="Falafel Tasche" loading="lazy">
+                            </div>
+                            <div class="menu-item-details">
+                                <span class="item-number">66</span>
+                                <span class="item-name">Falafel Tasche (gem. Salat + Sauce)</span>
+                                <span class="item-dots">......................................</span>
+                                <span class="item-price">7,50 €</span>
+                            </div>
                         </div>
-                        <div class="menu-item-details">
-                            <span class="item-number">66</span>
-                            <span class="item-name">Falafel Tasche (gem. Salat + Sauce)</span>
-                            <span class="item-dots">......................................</span>
-                            <span class="item-price">7,50</span>
-                        </div>
-                    </div>
                     <div class="menu-item-row">
                         <div class="menu-item-image">
                             <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop&q=90" alt="Falafel Dürüm" loading="lazy">
@@ -748,14 +799,36 @@
             </div>
 
             <div class="menu-section sauces-section">
-                <h3 class="menu-section-title">UNSERE SAUCEN</h3>
-                <div class="sauces-grid">
-                    <div class="sauce-item">Knoblauchsauce</div>
-                    <div class="sauce-item">Cocktailsauce</div>
-                    <div class="sauce-item">Tzatziki</div>
-                    <div class="sauce-item">Joghurtsauce</div>
-                    <div class="sauce-item">Chilisauce</div>
-                    <div class="sauce-item">Jopisoße</div>
+                <h3 class="menu-section-header">
+                    <span>UNSERE SAUCEN <i class="fas fa-chevron-down"></i></span>
+                </h3>
+                <div class="menu-section-content">
+                    <div class="sauces-grid">
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop&q=90" alt="Knoblauchsauce" loading="lazy">
+                            <span>Knoblauchsauce</span>
+                        </div>
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1541014741259-de529411b96b?w=600&h=400&fit=crop&q=90" alt="Cocktailsauce" loading="lazy">
+                            <span>Cocktailsauce</span>
+                        </div>
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1590845947676-fa2576f401d2?w=600&h=400&fit=crop&q=90" alt="Tzatziki" loading="lazy">
+                            <span>Tzatziki</span>
+                        </div>
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1590845947676-fa2576f401d2?w=600&h=400&fit=crop&q=90" alt="Joghurtsauce" loading="lazy">
+                            <span>Joghurtsauce</span>
+                        </div>
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1561758033-7e924f619b47?w=600&h=400&fit=crop&q=90" alt="Chilisauce" loading="lazy">
+                            <span>Chilisauce</span>
+                        </div>
+                        <div class="sauce-item">
+                            <img src="https://images.unsplash.com/photo-1541014741259-de529411b96b?w=600&h=400&fit=crop&q=90" alt="Jopisoße" loading="lazy">
+                            <span>Jopisoße</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -880,6 +953,34 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Make menu sections collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
+            
+            menuSectionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle the 'collapsed' class on the header
+                    this.classList.toggle('collapsed');
+                    
+                    // Toggle the 'show' class on the content
+                    content.classList.toggle('show');
+                });
+                
+                // Collapse all sections by default
+                header.classList.add('collapsed');
+            });
+            
+            // Expand the first section by default
+            if (menuSectionHeaders.length > 0) {
+                const firstHeader = menuSectionHeaders[0];
+                firstHeader.classList.remove('collapsed');
+                firstHeader.nextElementSibling.classList.add('show');
+            }
+        });
+    </script>
 </body>
 </html>
