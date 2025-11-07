@@ -978,7 +978,7 @@
             const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
             
             // Initialize all sections
-            menuSectionHeaders.forEach((header, index) => {
+            menuSectionHeaders.forEach((header) => {
                 const content = header.nextElementSibling;
                 const icon = header.querySelector('i');
                 
@@ -988,28 +988,21 @@
                 
                 // Set up click handler
                 header.addEventListener('click', function() {
-                    // Close all other sections
-                    menuSectionHeaders.forEach(otherHeader => {
-                        if (otherHeader !== header) {
-                            otherHeader.classList.add('collapsed');
-                            otherHeader.nextElementSibling.style.maxHeight = '0';
-                        }
-                    });
-                    
                     // Toggle current section
                     const isCollapsed = header.classList.toggle('collapsed');
                     if (isCollapsed) {
                         content.style.maxHeight = '0';
                     } else {
+                        // Close all other sections
+                        menuSectionHeaders.forEach(otherHeader => {
+                            if (otherHeader !== header) {
+                                otherHeader.classList.add('collapsed');
+                                otherHeader.nextElementSibling.style.maxHeight = '0';
+                            }
+                        });
                         content.style.maxHeight = content.scrollHeight + 'px';
                     }
                 });
-                
-                // Open first section by default
-                if (index === 0) {
-                    header.classList.remove('collapsed');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
             });
         });
     </script>
