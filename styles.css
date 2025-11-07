@@ -404,8 +404,9 @@ html {
     border: 1px solid #333;
     width: 100%;
     max-width: 1000px;
-    display: block;
-    clear: both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -415,6 +416,8 @@ html {
     padding: 1rem 2rem;
     margin: 0;
     cursor: pointer;
+    width: 100%;
+    text-align: center;
     font-weight: 700;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -469,10 +472,9 @@ html {
     gap: 0;
     padding: 0;
     width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -483,16 +485,17 @@ html {
 
 .menu-item-row {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     padding: 1.5rem 2rem;
     border-bottom: 1px solid #2a2a2a;
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
     background: #1e1e1e;
     transition: all 0.3s ease;
-    gap: 1.5rem;
+    text-align: center;
 }
 
 .menu-item-row:hover {
@@ -504,12 +507,13 @@ html {
 }
 
 .menu-item-image {
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
     overflow: hidden;
     border-radius: 8px;
-    flex-shrink: 0;
     border: 1px solid #333;
+    margin: 0 auto;
 }
 
 .menu-item-image img {
@@ -525,13 +529,13 @@ html {
 
 .menu-item-details {
     position: relative;
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
     padding: 0;
+    margin-top: 1rem;
 }
 
 .item-number {
@@ -551,22 +555,23 @@ html {
 
 .item-name {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #fff;
-    margin: 0 0 0.5rem 0;
+    margin: 1rem 0 0.5rem;
     line-height: 1.3;
     display: block;
+    width: 100%;
 }
 
 .item-price {
     font-weight: 700;
     color: #ffd700;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     white-space: nowrap;
-    margin: 0;
-    padding: 0.3rem 0.8rem;
+    margin: 0.5rem 0 0;
+    padding: 0.4rem 1.2rem;
     background: rgba(255, 215, 0, 0.1);
-    border-radius: 12px;
+    border-radius: 15px;
     display: inline-block;
 }
 
