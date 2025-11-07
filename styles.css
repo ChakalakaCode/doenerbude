@@ -403,31 +403,35 @@ html {
     position: relative;
     overflow: hidden;
     border: 1px solid #2a2a2a;
-    width: 100%;
+    width: 95%;
     max-width: 900px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu-section-header {
     background: #2a2a2a;
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
     color: #ffd700;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 1rem;
     margin: 0;
     cursor: pointer;
     width: 100%;
     text-align: center;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
     border: none;
     letter-spacing: 1px;
     font-family: 'Poppins', sans-serif;
-    font-family: 'Poppins', sans-serif;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .menu-section-header:hover {
@@ -448,6 +452,7 @@ html {
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     background: #1a1a1a;
+    width: 100%;
     padding: 0 2rem;
     box-sizing: border-box;
 }
@@ -466,11 +471,15 @@ html {
 }
 
 .menu-items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     margin: 0;
     background: #1e1e1e;
 }
@@ -513,8 +522,9 @@ html {
 
 .menu-item-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     height: 200px;
+    margin: 0 auto;
     overflow: hidden;
     border-radius: 8px;
     border: 2px solid #333;
