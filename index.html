@@ -974,66 +974,43 @@
     </footer>
 
     <script>
-        // Make menu sections collapsible
         document.addEventListener('DOMContentLoaded', function() {
             const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
             
-            // Close all sections except the first one by default
+            // Initialize all sections
             menuSectionHeaders.forEach((header, index) => {
-                if (index !== 0) {
-                    const content = header.nextElementSibling;
-                    content.style.maxHeight = '0';
-                } else {
-                    const content = header.nextElementSibling;
-                    content.classList.add('show');
-                }
-            });
-
-            // Add click event to each header
-            menuSectionHeaders.forEach(header => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                
+                // Close all sections by default
+                content.style.maxHeight = '0';
+                header.classList.add('collapsed');
+                
+                // Set up click handler
                 header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const isOpen = content.classList.contains('show');
-                    
-                    // Close all sections
-                    document.querySelectorAll('.menu-section-content').forEach(section => {
-                        section.classList.remove('show');
-                        section.style.maxHeight = '0';
+                    // Close all other sections
+                    menuSectionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== header) {
+                            otherHeader.classList.add('collapsed');
+                            otherHeader.nextElementSibling.style.maxHeight = '0';
+                        }
                     });
                     
-                    // Toggle the clicked section
-                    if (!isOpen) {
-                        content.classList.add('show');
+                    // Toggle current section
+                    const isCollapsed = header.classList.toggle('collapsed');
+                    if (isCollapsed) {
+                        content.style.maxHeight = '0';
+                    } else {
                         content.style.maxHeight = content.scrollHeight + 'px';
                     }
                 });
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
-            
-            menuSectionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    
-                    // Toggle the 'collapsed' class on the header
-                    this.classList.toggle('collapsed');
-                    
-                    // Toggle the 'show' class on the content
-                    content.classList.toggle('show');
-                });
                 
-                // Collapse all sections by default
-                header.classList.add('collapsed');
+                // Open first section by default
+                if (index === 0) {
+                    header.classList.remove('collapsed');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
             });
-            
-            // Expand the first section by default
-            if (menuSectionHeaders.length > 0) {
-                const firstHeader = menuSectionHeaders[0];
-                firstHeader.classList.remove('collapsed');
-                firstHeader.nextElementSibling.classList.add('show');
-            }
         });
     </script>
 </body>

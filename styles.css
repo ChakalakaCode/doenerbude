@@ -404,28 +404,33 @@ html {
     position: relative;
     overflow: hidden;
     border-top: 1px solid #e0e0e0;
+    width: 100%;
+    display: block;
+    clear: both;
 }
 
 .menu-section-header {
     background: #ffd700;
     color: #000;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: left;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     margin: 0;
     cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-transform: uppercase;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
 }
 
 .menu-section-header i {
     transition: transform 0.3s ease;
-    font-size: 1.2rem;
+    margin-left: 1rem;
 }
 
 .menu-section-header.collapsed i {
@@ -437,6 +442,11 @@ html {
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     background: #fff;
+    padding: 0 2rem;
+}
+
+.menu-section-content.show {
+    padding: 1.5rem 2rem;
 }
 
 .menu-section-content.show {
@@ -453,117 +463,80 @@ html {
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem 0;
+    width: 100%;
 }
 
 .menu-item-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.menu-item-row::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 0%, rgba(255, 215, 0, 0.05) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.menu-item-row:hover {
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(30, 30, 30, 1) 100%);
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.3);
-    border-color: rgba(255, 215, 0, 0.5);
-}
-
-.menu-item-row:hover::before {
-    opacity: 1;
-}
-
-.menu-item-details {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 0.3rem;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-item-row:last-child {
+    border-bottom: none;
 }
 
 .menu-item-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    order: 2;
-}
-
-.menu-item-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
-    pointer-events: none;
+    border-radius: 8px;
 }
 
 .menu-item-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
 }
 
-.menu-item-row:hover .menu-item-image img {
-    transform: scale(1.1);
+.menu-item-image:hover img {
+    transform: scale(1.05);
+}
+
+.menu-item-details {
+    flex: 1;
+    position: relative;
 }
 
 .item-number {
-    color: #ffd700;
+    display: inline-block;
+    background: #ffd700;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
     font-weight: 700;
+    margin-right: 10px;
     font-size: 0.9rem;
-    font-family: 'Poppins', sans-serif;
-    margin-right: 0.5rem;
 }
 
 .item-name {
     font-weight: 600;
+    font-size: 1.1rem;
     color: #333;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    margin-right: 1rem;
-}
-
-.item-dots {
-    display: none;
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
 .item-price {
-    color: #000;
+    position: absolute;
+    right: 0;
+    top: 0;
     font-weight: 700;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    white-space: nowrap;
+    color: #000;
+    font-size: 1.1rem;
 }
 
 .item-description {
     color: #666;
-    font-style: normal;
-    font-size: 0.85rem;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.4;
-    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
 }
 
 /* Pizza Section Special Styling */
