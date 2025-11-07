@@ -377,38 +377,35 @@ html {
 
 /* Menu Section Styles */
 .menu {
-    background: #ffd700;
-    padding: 2rem 0;
+    background: #121212;
+    padding: 1.5rem 0 3rem;
     min-height: 100vh;
 }
 
 .section-title {
     text-align: center;
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: #000;
-    margin-bottom: 2rem;
-    text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.8);
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin: 0 0 1.5rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
+    padding: 0 1rem;
 }
 
 /* Menu Sections */
 .menu-section {
     background: #1a1a1a;
-    margin: 0 auto 2.5rem;
-    border-radius: 8px;
+    margin: 0 auto 1.5rem;
+    border-radius: 4px;
     padding: 0;
     position: relative;
     overflow: hidden;
-    border: 1px solid #333;
+    border: 1px solid #2a2a2a;
     width: 100%;
     max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .menu-section-header {
@@ -643,13 +640,30 @@ html {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.pizza-note {
-    background: #2a2000;
-    padding: 1.5rem 2rem;
+/* Tax Information */
+.price-note {
     text-align: center;
-    color: #ffd700;
-    font-weight: 600;
-    border-top: 1px solid #ffd740;
+    color: #888;
+    font-size: 0.9rem;
+    margin: 2rem 0 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+.price-note p {
+    margin: 0;
+    padding: 0;
+}
+
+.price-note small {
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* Ensure menu sections don't have extra spacing */
+.menu-section {
+    margin-bottom: 1.5rem !important;
 }
 
 .pizza-price-highlight {
