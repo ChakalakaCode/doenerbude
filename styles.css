@@ -567,7 +567,7 @@ html {
     border-color: #ffd700;
 }
 
-.pizza-section .menu-section-title {
+.pizza-section .menu-section-header {
     background: #ffd700;
 }
 
@@ -610,8 +610,8 @@ html {
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5);
 }
 
-.toppings-section .menu-section-title,
-.sauces-section .menu-section-title {
+.toppings-section .menu-section-header,
+.sauces-section .menu-section-header {
     background: #000;
     color: #ffd700;
     transform: skew(5deg);
