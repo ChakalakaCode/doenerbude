@@ -395,55 +395,75 @@ html {
 }
 
 .menu-section {
-    background: #000;
-    margin: 1rem 0;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border: 3px solid #000;
+    background: #fff;
+    margin: 0.5rem 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
+    border-top: 1px solid #e0e0e0;
 }
 
-.menu-section-title {
+.menu-section-header {
     background: #ffd700;
     color: #000;
-    font-size: 2.5rem;
-    font-weight: 900;
+    font-size: 1.5rem;
+    font-weight: 700;
     text-align: left;
     padding: 1rem 2rem;
-    margin: 0 0 1rem 0;
-    border-radius: 0;
-    text-shadow: none;
-    letter-spacing: 1px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
-    position: relative;
-    display: inline-block;
-    transform: skew(-10deg);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.menu-section-header i {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.menu-section-header.collapsed i {
+    transform: rotate(-90deg);
+}
+
+.menu-section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: #fff;
+}
+
+.menu-section-content.show {
+    max-height: 5000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.menu-section-content-inner {
+    padding: 1.5rem 2rem;
 }
 
 .menu-items-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
 .menu-item-row {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 2rem;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 20, 0.9) 100%);
-    padding: 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 215, 0, 0.2);
-    margin-bottom: 1.5rem;
     position: relative;
-    overflow: hidden;
 }
 
 .menu-item-row::before {
@@ -471,19 +491,19 @@ html {
 }
 
 .menu-item-details {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    gap: 0.3rem;
 }
 
 .menu-item-image {
-    width: 200px;
-    height: 150px;
-    border-radius: 12px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     position: relative;
+    flex-shrink: 0;
     order: 2;
 }
 
@@ -510,55 +530,40 @@ html {
 }
 
 .item-number {
-    background: transparent;
     color: #ffd700;
-    font-weight: 900;
-    padding: 0;
-    border-radius: 0;
-    margin-right: 0.5rem;
-    font-size: 1rem;
-    text-align: left;
-    min-width: auto;
-    box-shadow: none;
+    font-weight: 700;
+    font-size: 0.9rem;
     font-family: 'Poppins', sans-serif;
+    margin-right: 0.5rem;
 }
 
 .item-name {
-    font-weight: 400;
-    color: #ffd700;
+    font-weight: 600;
+    color: #333;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
+    margin-right: 1rem;
 }
 
 .item-dots {
-    color: #ffd700;
-    margin: 0 0.5rem;
-    font-weight: 300;
-    overflow: hidden;
-    flex: 1;
-    text-align: center;
+    display: none;
 }
 
 .item-price {
-    background: transparent;
-    color: #ffd700;
+    color: #000;
     font-weight: 700;
-    padding: 0;
-    border-radius: 0;
     font-size: 1rem;
-    box-shadow: none;
-    border: none;
-    text-shadow: none;
     font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
 }
 
 .item-description {
-    grid-column: 1 / -1;
-    color: #ccc;
+    color: #666;
     font-style: normal;
-    margin: 0.2rem 0 0 2rem;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
+    margin-top: 0.3rem;
 }
 
 /* Pizza Section Special Styling */

@@ -80,6 +80,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -103,6 +104,7 @@
                     <span class="service-option">
                         <i class="fas fa-motorcycle"></i> Lieferservice
                     </span>
+                    </div>
                 </div>
             </div>
             <div class="hero-buttons">
@@ -160,6 +162,7 @@
                         <i class="fas fa-utensils"></i>
                         <span>Täglich frisch</span>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -204,6 +207,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -226,6 +230,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -247,12 +252,16 @@
                                 <p class="item-description">Original Berliner Döner-Fleisch (Kalb/Hähnchen) im Yufka-Teig mit Salat und Sauce</p>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-section">
-                <h3 class="menu-section-title">BERLINER DÖNER BOX</h3>
-                <div class="menu-items-grid">
+                <div class="menu-section-header">
+                    <span>BERLINER DÖNER BOX <i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
                     <div class="menu-item-row">
                         <div class="menu-item-image">
                             <img src="https://images.unsplash.com/photo-1606502281004-f86cf1282af5?w=600&h=400&fit=crop&q=90" alt="Döner Box" loading="lazy">
@@ -264,6 +273,7 @@
                             <span class="item-price">7,50</span>
                             <p class="item-description">Original Berliner Döner-Fleisch (Kalb/Hähnchen) mit Pommes und authentischer Sauce</p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -283,13 +293,17 @@
                             <p class="item-description">mit Kalb/Hähnchen, Zwiebeln, Salat und Sauce</p>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Frische Salate Section -->
             <div class="menu-section">
-                <h3 class="menu-section-title">FRISCHE SALATE</h3>
-                <div class="menu-items-grid">
+                <div class="menu-section-header">
+                    <span>FRISCHE SALATE <i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="menu-section-content">
+                    <div class="menu-items-grid">
                     <div class="menu-item-row">
                         <div class="menu-item-image">
                             <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&q=90" alt="Gemischter Salat" loading="lazy">
@@ -752,6 +766,7 @@
                             <p class="item-description">Original Berliner Dönerfleisch mit Brokkoli, Mais, Sauce Hollandaise inkl.</p>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -795,6 +810,7 @@
                             <span class="item-price">7,50</span>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -828,6 +844,7 @@
                             <img src="https://images.unsplash.com/photo-1541014741259-de529411b96b?w=600&h=400&fit=crop&q=90" alt="Jopisoße" loading="lazy">
                             <span>Jopisoße</span>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -874,6 +891,7 @@
                             <span>11:00 - 22:00 Uhr</span>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -908,6 +926,7 @@
                 </div>
                 <div class="about-image">
                     <img src="laden.jpg" alt="Dönerbude Beelen Ladenansicht" class="about-img">
+                    </div>
                 </div>
             </div>
         </div>
@@ -945,6 +964,7 @@
                     <h3>Rechtliches</h3>
                     <p><a href="impressum.html">Impressum</a></p>
                     <p><a href="datenschutz.html">Datenschutz</a></p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -955,6 +975,40 @@
 
     <script>
         // Make menu sections collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
+            
+            // Close all sections except the first one by default
+            menuSectionHeaders.forEach((header, index) => {
+                if (index !== 0) {
+                    const content = header.nextElementSibling;
+                    content.style.maxHeight = '0';
+                } else {
+                    const content = header.nextElementSibling;
+                    content.classList.add('show');
+                }
+            });
+
+            // Add click event to each header
+            menuSectionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isOpen = content.classList.contains('show');
+                    
+                    // Close all sections
+                    document.querySelectorAll('.menu-section-content').forEach(section => {
+                        section.classList.remove('show');
+                        section.style.maxHeight = '0';
+                    });
+                    
+                    // Toggle the clicked section
+                    if (!isOpen) {
+                        content.classList.add('show');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const menuSectionHeaders = document.querySelectorAll('.menu-section-header');
             
