@@ -423,6 +423,10 @@ html {
     box-sizing: border-box;
 }
 
+.menu-section:first-of-type {
+    border-top: none;
+}
+
 .menu-section-header {
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
     color: #ffd700;
@@ -683,6 +687,13 @@ html {
     box-sizing: border-box;
 }
 
+.salad-section:first-of-type,
+.fastfood-section:first-of-type,
+.pizza-section:first-of-type,
+.schnitzel-section:first-of-type {
+    border-top: none;
+}
+
 /* Tax Information */
 .price-note {
     text-align: center;
@@ -769,6 +780,11 @@ html {
     max-width: 800px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.toppings-section:first-of-type,
+.sauces-section:first-of-type {
+    border-top: none;
 }
 
 .toppings-section .menu-section-header,
