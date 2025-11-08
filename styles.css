@@ -1408,6 +1408,29 @@ html {
         margin: 1rem 0;
     }
     
+    .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        margin-top: 0.5rem;
+        padding: 0;
+    }
+    
+    .dropdown-menu li {
+        margin: 0.5rem 0;
+    }
+    
+    .dropdown-menu a {
+        padding: 0.6rem 1rem;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 5px;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    
     .hamburger {
         display: flex;
         flex-direction: column;
