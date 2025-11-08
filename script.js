@@ -556,3 +556,39 @@ window.addEventListener('scroll', () => {
         heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
 });
+
+// Collapsible Menu Sections
+document.addEventListener('DOMContentLoaded', () => {
+    const menuHeaders = document.querySelectorAll('.menu-section-header');
+    
+    // Initialize - collapse all sections except the first one
+    menuHeaders.forEach((header, index) => {
+        const content = header.nextElementSibling;
+        
+        if (index === 0) {
+            // First section open by default
+            content.classList.add('show');
+            header.classList.remove('collapsed');
+        } else {
+            // All other sections collapsed
+            content.classList.remove('show');
+            header.classList.add('collapsed');
+        }
+        
+        // Add click event
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const isCollapsed = header.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                // Expand this section
+                header.classList.remove('collapsed');
+                content.classList.add('show');
+            } else {
+                // Collapse this section
+                header.classList.add('collapsed');
+                content.classList.remove('show');
+            }
+        });
+    });
+});
