@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiken - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-admin-small">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h2>Dönerbude Admin</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Bestellungen</span>
+            </a>
+            <a href="admin-stats.html" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Statistiken</span>
+            </a>
+            <a href="admin-login.html" class="nav-item" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Abmelden</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p id="currentUser">Angemeldet als: <strong>Admin</strong></p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1><i class="fas fa-chart-line"></i> Verkaufsstatistiken</h1>
+                <p id="currentDateTime"></p>
+            </div>
+            <div class="header-right">
+                <select id="periodFilter" class="period-select">
+                    <option value="today">Heute</option>
+                    <option value="week">Diese Woche</option>
+                    <option value="month" selected>Dieser Monat</option>
+                    <option value="year">Dieses Jahr</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon revenue">
+                    <i class="fas fa-euro-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalRevenue">0,00 €</h3>
+                    <p>Gesamtumsatz</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon completed">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalOrders">0</h3>
+                    <p>Bestellungen</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon in-progress">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="avgOrderValue">0,00 €</h3>
+                    <p>Ø Bestellwert</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon pending">
+                    <i class="fas fa-hamburger"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="topProduct">-</h3>
+                    <p>Top-Produkt</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <!-- Revenue Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2><i class="fas fa-chart-area"></i> Umsatzentwicklung</h2>
+                </div>
+                <div class="chart-body">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Orders Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2><i class="fas fa-chart-pie"></i> Bestellarten</h2>
+                </div>
+                <div class="chart-body">
+                    <canvas id="orderTypesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Sales Table -->
+        <div class="table-card">
+            <div class="table-header">
+                <h2><i class="fas fa-list"></i> Top Verkaufte Produkte</h2>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Produkt</th>
+                            <th>Verkaufte Anzahl</th>
+                            <th>Umsatz</th>
+                            <th>Anteil</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Time-based Stats -->
+        <div class="charts-grid">
+            <!-- Hourly Distribution -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2><i class="fas fa-clock"></i> Bestellungen nach Uhrzeit</h2>
+                </div>
+                <div class="chart-body">
+                    <canvas id="hourlyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2><i class="fas fa-credit-card"></i> Zahlungsarten</h2>
+                </div>
+                <div class="chart-body">
+                    <canvas id="paymentChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Comparison -->
+        <div class="table-card">
+            <div class="table-header">
+                <h2><i class="fas fa-calendar-alt"></i> Monatsvergleich</h2>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Monat</th>
+                            <th>Bestellungen</th>
+                            <th>Umsatz</th>
+                            <th>Ø Bestellwert</th>
+                            <th>Veränderung</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monthlyTable">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin-app.js"></script>
+</body>
+</html>
