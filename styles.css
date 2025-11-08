@@ -1521,6 +1521,16 @@ html {
         box-sizing: border-box;
     }
     
+    .menu-section:first-of-type,
+    .salad-section:first-of-type,
+    .fastfood-section:first-of-type,
+    .pizza-section:first-of-type,
+    .schnitzel-section:first-of-type,
+    .toppings-section:first-of-type,
+    .sauces-section:first-of-type {
+        border-top: none !important;
+    }
+    
     .menu-section-header {
         font-size: 0.95rem;
         padding: 1.2rem 0.5rem;
