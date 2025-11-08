@@ -50,6 +50,44 @@ const R=[
 ]
 function choose(n){const s=norm(n).replace(/\s+/g,' ');for(const r of R){if(includesAll(s,r.k))return r;}return null}
 const FORCE = typeof window !== 'undefined' && !!window.MENU_IMAGES_FORCE;
+function sigFor(text){let s=0;for(let i=0;i<text.length;i++){s=(s*31 + text.charCodeAt(i))>>>0;}return (s%1000)+1}
+function deriveQuery(dish, section){
+  const s = norm((dish+' '+section)||'');
+  if(s.includes('lahmacun')) return 'lahmacun,turkish';
+  if(s.includes('duerum')||s.includes('durum')) return 'wrap,kebab';
+  if(s.includes('doener')||s.includes('doner')||s.includes('kebab')){
+    if(s.includes('box')) return 'kebab,fries';
+    if(s.includes('teller')) return 'kebab,plate,salad';
+    return 'kebab,doner';
+  }
+  if(s.includes('salat')){
+    if(s.includes('tonno')) return 'tuna,salad';
+    if(s.includes('falafel')) return 'falafel,salad';
+    if(s.includes('chicken')) return 'chicken,salad';
+    return 'mixed,salad';
+  }
+  if(s.includes('pizza') && s.includes('calzone')) return 'calzone,pizza';
+  if(s.includes('pizza') && s.includes('spinaci')) return 'pizza,spinach';
+  if(s.includes('margherita')) return 'pizza,margherita';
+  if(s.includes('pizza') && s.includes('broetchen')) return 'pizza,bread,garlic bread';
+  if(s.includes('pizza')) return 'pizza';
+  if(s.includes('schnitzel')) return 'schnitzel,cutlet,fries';
+  if(s.includes('currywurst')) return 'currywurst';
+  if(s.includes('bratwurst')) return 'bratwurst,sausage';
+  if(s.includes('nuggets')) return 'chicken,nuggets';
+  if(s.includes('wings')) return 'chicken,wings';
+  if(s.includes('auflauf')) return 'casserole,gratin';
+  return 'food,tasty';
+}
+function selectSrc(choice, dish, section){
+  const MODE = (typeof window!=='undefined' && window.MENU_IMAGES_MODE) || 'curated';
+  if(MODE==='search'){
+    const q = choice.q || deriveQuery(dish, section);
+    const sig = sigFor(dish+' '+section);
+    return 'https://source.unsplash.com/900x600/?'+encodeURIComponent(q)+'&sig='+sig;
+  }
+  return choice.u;
+}
 function apply(){
   document.querySelectorAll('.menu-item-row').forEach(row=>{
     const nameEl=row.querySelector('.item-name');
@@ -65,7 +103,7 @@ function apply(){
       el.loading='lazy';
       el.decoding='async';
       el.alt=choice.a;
-      el.src=choice.u;
+      el.src=selectSrc(choice, dish, section);
       el.sizes='(max-width: 768px) 100vw, 600px';
     };
     if(img){
