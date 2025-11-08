@@ -27,9 +27,10 @@ html {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
     width: 100%;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* Header Styles */
@@ -398,7 +399,8 @@ html {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 
 /* Menu Sections */
@@ -410,19 +412,20 @@ html {
     position: relative;
     overflow: hidden;
     border: 1px solid #2a2a2a;
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: 800px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .menu-section-header {
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
     color: #ffd700;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.5rem;
     margin: 0;
     cursor: pointer;
     width: 100%;
@@ -440,6 +443,7 @@ html {
     min-height: 65px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     text-align: center;
+    box-sizing: border-box;
 }
 
 .menu-section-header span {
@@ -671,9 +675,10 @@ html {
     position: relative;
     overflow: hidden;
     border: 1px solid #2a2a2a;
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: 800px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 /* Tax Information */
@@ -759,7 +764,8 @@ html {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     max-width: 800px;
-    width: 100%;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
 }
 
 .toppings-section .menu-section-header,
@@ -769,6 +775,7 @@ html {
     transform: skew(0deg);
     margin: 0;
     padding: 1.5rem 0.5rem;
+    box-sizing: border-box;
 }
 
 .toppings-grid, .sauces-grid {
@@ -1465,19 +1472,22 @@ html {
     
     .section-title {
         font-size: 1.8rem;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
     }
     
     .menu-section {
         margin: 0 auto 0 auto;
-        width: 100%;
+        width: calc(100% - 10px);
         max-width: 100%;
         border-radius: 8px;
+        box-sizing: border-box;
     }
     
     .menu .container {
-        padding: 0 1rem;
+        padding: 0 5px;
         max-width: 100%;
+        box-sizing: border-box;
     }
     
     .salad-section,
@@ -1486,17 +1496,19 @@ html {
     .schnitzel-section,
     .toppings-section,
     .sauces-section {
-        width: 100%;
+        width: calc(100% - 10px);
         max-width: 100%;
         margin: 0 auto 0 auto !important;
+        box-sizing: border-box;
     }
     
     .menu-section-header {
         font-size: 0.95rem;
-        padding: 1.2rem 1rem;
+        padding: 1.2rem 0.5rem;
         min-height: auto;
         width: 100%;
         text-align: center;
+        box-sizing: border-box;
     }
     
     .menu-section-header span {
@@ -1509,6 +1521,7 @@ html {
         display: flex;
         align-items: center;
         justify-content: center;
+        letter-spacing: 0.5px;
     }
     
     .menu-section-header i {
@@ -1613,7 +1626,8 @@ html {
     }
     
     .container {
-        padding: 0 0.5rem;
+        padding: 0 5px;
+        box-sizing: border-box;
     }
     
     .contact-grid {
