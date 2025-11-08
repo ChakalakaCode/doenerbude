@@ -1408,6 +1408,14 @@ html {
         margin: 1rem 0;
     }
     
+    .nav-dropdown > .nav-link {
+        pointer-events: none;
+        opacity: 0.7;
+        font-size: 0.85rem;
+        padding: 0.5rem 0;
+        cursor: default;
+    }
+    
     .nav-dropdown .dropdown-menu {
         position: static;
         opacity: 1;
@@ -1416,7 +1424,7 @@ html {
         border: none;
         box-shadow: none;
         background: transparent;
-        margin-top: 0.5rem;
+        margin-top: 0;
         padding: 0;
     }
     
@@ -1425,10 +1433,17 @@ html {
     }
     
     .dropdown-menu a {
-        padding: 0.6rem 1rem;
+        padding: 0.8rem 1rem;
         background: rgba(255, 215, 0, 0.1);
         border-radius: 5px;
         border: 1px solid rgba(255, 215, 0, 0.3);
+        font-size: 1rem;
+        color: #ffd700;
+    }
+    
+    .dropdown-menu a:hover {
+        background: rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.5);
     }
     
     .hamburger {
@@ -1522,17 +1537,18 @@ html {
     }
     
     .menu-section {
-        margin: 0 auto 0 auto;
-        width: 100%;
-        max-width: 100%;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
         border-radius: 0;
         box-sizing: border-box;
         border: none;
         border-top: 1px solid #333;
+        padding: 0 !important;
     }
     
     .menu .container {
-        padding: 0 5px;
+        padding: 0;
         max-width: 100%;
         box-sizing: border-box;
     }
@@ -1543,12 +1559,13 @@ html {
     .schnitzel-section,
     .toppings-section,
     .sauces-section {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto 0 auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
         box-sizing: border-box;
         border: none;
         border-top: 1px solid #333;
+        padding: 0 !important;
     }
     
     .menu-section:first-of-type,
@@ -1563,11 +1580,12 @@ html {
     
     .menu-section-header {
         font-size: 0.95rem;
-        padding: 1.2rem 0.5rem;
+        padding: 1.2rem 1rem;
         min-height: auto;
         width: 100%;
         text-align: center;
         box-sizing: border-box;
+        margin: 0;
     }
     
     .menu-section-header span {
