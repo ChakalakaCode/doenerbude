@@ -407,14 +407,15 @@ html {
 .menu-section {
     background: #1a1a1a;
     margin: 0 auto 0;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0;
     position: relative;
     overflow: hidden;
-    border: 1px solid #2a2a2a;
-    width: calc(100% - 20px);
+    border: none;
+    border-top: 1px solid #333;
+    width: 100%;
     max-width: 800px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -670,14 +671,15 @@ html {
 .schnitzel-section {
     background: #1a1a1a;
     margin: 0 auto 0;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0;
     position: relative;
     overflow: hidden;
-    border: 1px solid #2a2a2a;
-    width: calc(100% - 20px);
+    border: none;
+    border-top: 1px solid #333;
+    width: 100%;
     max-width: 800px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     box-sizing: border-box;
 }
 
@@ -756,15 +758,16 @@ html {
 /* Toppings and Sauces Sections */
 .toppings-section, .sauces-section {
     background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    border: none;
+    border-top: 1px solid #333;
     margin: 0 auto 0;
     padding: 0;
     transform: skew(0deg);
     position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: none;
+    border-radius: 0;
     max-width: 800px;
-    width: calc(100% - 20px);
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -1478,9 +1481,9 @@ html {
     
     .menu-section {
         margin: 0 auto 0 auto;
-        width: calc(100% - 10px);
+        width: 100%;
         max-width: 100%;
-        border-radius: 8px;
+        border-radius: 0;
         box-sizing: border-box;
     }
     
@@ -1496,7 +1499,7 @@ html {
     .schnitzel-section,
     .toppings-section,
     .sauces-section {
-        width: calc(100% - 10px);
+        width: 100%;
         max-width: 100%;
         margin: 0 auto 0 auto !important;
         box-sizing: border-box;
