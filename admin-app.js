@@ -169,10 +169,10 @@ const UI = {
 };
 
 // ========== LOGIN PAGE ==========
-if (window.location.pathname.includes('admin-login.html')) {
-    const loginForm = document.getElementById('loginForm');
-    const errorMessage = document.getElementById('errorMessage');
-    
+const loginForm = document.getElementById('loginForm');
+const errorMessage = document.getElementById('errorMessage');
+
+if (loginForm && errorMessage) {
     // Check if already logged in
     if (localStorage.getItem('adminLoggedIn') === 'true') {
         window.location.href = 'admin-dashboard.html';
@@ -222,7 +222,10 @@ function initMobileSidebar() {
 }
 
 // ========== DASHBOARD PAGE ==========
-if (window.location.pathname.includes('admin-dashboard.html')) {
+const ordersContainer = document.getElementById('ordersContainer');
+const newOrderBtn = document.getElementById('newOrderBtn');
+
+if (ordersContainer && newOrderBtn) {
     AUTH.checkAuth();
     DATA.init();
     initMobileSidebar();
@@ -425,16 +428,25 @@ if (window.location.pathname.includes('admin-dashboard.html')) {
     });
     
     // Refresh button
-    document.getElementById('refreshBtn').addEventListener('click', updateDashboard);
+    const refreshBtn = document.getElementById('refreshBtn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', updateDashboard);
+    }
     
     // Logout
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        AUTH.logout();
-    });
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            AUTH.logout();
+        });
+    }
     
     // Update username
-    document.getElementById('currentUser').innerHTML = `Angemeldet als: <strong>${AUTH.getUsername()}</strong>`;
+    const currentUserElem = document.getElementById('currentUser');
+    if (currentUserElem) {
+        currentUserElem.innerHTML = `Angemeldet als: <strong>${AUTH.getUsername()}</strong>`;
+    }
     
     // Update time
     UI.updateCurrentDateTime();
@@ -445,7 +457,10 @@ if (window.location.pathname.includes('admin-dashboard.html')) {
 }
 
 // ========== STATISTICS PAGE ==========
-if (window.location.pathname.includes('admin-stats.html')) {
+const periodFilter = document.getElementById('periodFilter');
+const revenueChart = document.getElementById('revenueChart');
+
+if (periodFilter && revenueChart) {
     AUTH.checkAuth();
     DATA.init();
     initMobileSidebar();
@@ -771,19 +786,27 @@ if (window.location.pathname.includes('admin-stats.html')) {
     }
     
     // Period filter
-    document.getElementById('periodFilter').addEventListener('change', function() {
-        currentPeriod = this.value;
-        updateStatistics();
-    });
+    if (periodFilter) {
+        periodFilter.addEventListener('change', function() {
+            currentPeriod = this.value;
+            updateStatistics();
+        });
+    }
     
     // Logout
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        AUTH.logout();
-    });
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            AUTH.logout();
+        });
+    }
     
     // Update username
-    document.getElementById('currentUser').innerHTML = `Angemeldet als: <strong>${AUTH.getUsername()}</strong>`;
+    const currentUserElem = document.getElementById('currentUser');
+    if (currentUserElem) {
+        currentUserElem.innerHTML = `Angemeldet als: <strong>${AUTH.getUsername()}</strong>`;
+    }
     
     // Update time
     UI.updateCurrentDateTime();
