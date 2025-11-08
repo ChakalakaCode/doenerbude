@@ -192,10 +192,40 @@ if (window.location.pathname.includes('admin-login.html')) {
     });
 }
 
+// ========== MOBILE SIDEBAR TOGGLE ==========
+function initMobileSidebar() {
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (mobileToggle && sidebar && overlay) {
+        // Toggle sidebar
+        mobileToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        
+        // Close sidebar when clicking overlay
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        // Close sidebar when clicking nav items
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    }
+}
+
 // ========== DASHBOARD PAGE ==========
 if (window.location.pathname.includes('admin-dashboard.html')) {
     AUTH.checkAuth();
     DATA.init();
+    initMobileSidebar();
     
     let currentFilter = 'all';
     
@@ -418,6 +448,7 @@ if (window.location.pathname.includes('admin-dashboard.html')) {
 if (window.location.pathname.includes('admin-stats.html')) {
     AUTH.checkAuth();
     DATA.init();
+    initMobileSidebar();
     
     let currentPeriod = 'month';
     
