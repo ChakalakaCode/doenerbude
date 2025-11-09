@@ -182,6 +182,93 @@
         </div>
     </section>
 
+    <!-- Tagesangebote Section -->
+    <section class="daily-specials">
+        <div class="container">
+            <h2 class="section-title">UNSERE TAGESANGEBOTE</h2>
+            <p class="section-subtitle">Jeden Tag ein besonderes Angebot für Sie!</p>
+            
+            <div class="specials-grid">
+                <!-- Montag -->
+                <div class="special-card" data-day="1">
+                    <div class="special-icon">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="special-day">Montag</div>
+                    <div class="special-offer">Hähnchen-Tag</div>
+                    <div class="special-price">3,50 €</div>
+                    <div class="special-description">Alle Hähnchengerichte</div>
+                </div>
+
+                <!-- Dienstag -->
+                <div class="special-card" data-day="2">
+                    <div class="special-icon">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <div class="special-day">Dienstag</div>
+                    <div class="special-offer">Pizza-Tag</div>
+                    <div class="special-price">8,00 €</div>
+                    <div class="special-description">Alle 30cm Pizzen</div>
+                </div>
+
+                <!-- Mittwoch -->
+                <div class="special-card" data-day="3">
+                    <div class="special-icon">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="special-day">Mittwoch</div>
+                    <div class="special-offer">Döner-Menü</div>
+                    <div class="special-price">10,50 €</div>
+                    <div class="special-description">Döner + Pommes + Getränk</div>
+                </div>
+
+                <!-- Donnerstag -->
+                <div class="special-card" data-day="4">
+                    <div class="special-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="special-day">Donnerstag</div>
+                    <div class="special-offer">Veggie-Tag</div>
+                    <div class="special-price">6,50 €</div>
+                    <div class="special-description">Falafel-Gerichte</div>
+                </div>
+
+                <!-- Freitag -->
+                <div class="special-card" data-day="5">
+                    <div class="special-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="special-day">Freitag</div>
+                    <div class="special-offer">Lahmacun spezial</div>
+                    <div class="special-price">5,50 €</div>
+                    <div class="special-description">Lahmacun mit allem</div>
+                </div>
+
+                <!-- Samstag -->
+                <div class="special-card" data-day="6">
+                    <div class="special-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="special-day">Samstag</div>
+                    <div class="special-offer">Teller-Tag</div>
+                    <div class="special-price">9,50 €</div>
+                    <div class="special-description">Döner Teller + Getränk</div>
+                </div>
+
+                <!-- Sonntag -->
+                <div class="special-card" data-day="0">
+                    <div class="special-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="special-day">Sonntag</div>
+                    <div class="special-offer">Family-Deal</div>
+                    <div class="special-price">29,90 €</div>
+                    <div class="special-description">2 Döner + 2 Getränke + Pommes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Menu Section -->
     <section id="menu" class="menu">
         <div class="container">
@@ -1046,6 +1133,18 @@
                 });
             });
         });
+
+        // Highlight today's special
+        const today = new Date().getDay();
+        const todayCard = document.querySelector(`.special-card[data-day="${today}"]`);
+        if (todayCard) {
+            todayCard.classList.add('today');
+            
+            // Smooth scroll to daily specials on page load (optional)
+            setTimeout(() => {
+                todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1000);
+        }
     </script>
 
 </body>
