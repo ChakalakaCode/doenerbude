@@ -409,7 +409,10 @@ html {
     padding: 4rem 0;
     margin: 0;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
+    width: 100%;
+    max-width: 100vw;
 }
 
 .daily-specials::before {
@@ -435,6 +438,9 @@ html {
     text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
     position: relative;
     z-index: 1;
+    padding: 0 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .daily-specials .section-subtitle {
@@ -445,6 +451,9 @@ html {
     font-weight: 300;
     position: relative;
     z-index: 1;
+    padding: 0 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .specials-grid {
@@ -456,6 +465,8 @@ html {
     padding: 0 1rem;
     position: relative;
     z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .special-card {
@@ -469,6 +480,10 @@ html {
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
 }
 
 .special-card::before {
@@ -591,64 +606,98 @@ html {
 
 @media (max-width: 768px) {
     .daily-specials {
-        padding: 3rem 0;
+        padding: 2rem 0;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
     }
     
     .specials-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        padding: 0 0.5rem;
+        gap: 0.8rem;
+        padding: 0 0.8rem;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .special-card {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
+        border-radius: 15px;
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    .special-card:hover {
+        transform: translateY(-5px) scale(1.01);
     }
     
     .special-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-        margin-bottom: 1rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
     }
     
     .special-day {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .special-offer {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
     }
     
     .special-price {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
     }
     
     .special-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .daily-specials .section-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        padding: 0 1rem;
     }
     
     .daily-specials .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
     }
 }
 
 @media (max-width: 480px) {
+    .daily-specials {
+        padding: 2rem 0;
+        overflow-x: hidden;
+    }
+    
     .specials-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.8rem;
+        padding: 0 1rem;
+        max-width: 100%;
     }
     
     .special-card {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
+        max-width: 100%;
+    }
+    
+    .special-card:hover {
+        transform: translateY(-5px) scale(1.0);
     }
     
     .daily-specials .section-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        padding: 0 1rem;
+    }
+    
+    .daily-specials .section-subtitle {
+        font-size: 0.9rem;
+        padding: 0 1rem;
     }
 }
 
