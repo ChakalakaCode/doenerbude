@@ -3694,6 +3694,15 @@ html {
     box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
 }
 
+.family-salad-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffd700;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
 .text-item {
     display: flex;
     flex-direction: column;
@@ -3750,7 +3759,8 @@ html {
     }
     
     .family-img,
-    .family-drink-img {
+    .family-drink-img,
+    .family-salad-img {
         width: 120px;
         height: 120px;
     }
@@ -3788,7 +3798,8 @@ html {
     }
     
     .family-img,
-    .family-drink-img {
+    .family-drink-img,
+    .family-salad-img {
         width: 100px;
         height: 100px;
     }
@@ -3818,7 +3829,8 @@ html {
     }
     
     .family-img,
-    .family-drink-img {
+    .family-drink-img,
+    .family-salad-img {
         width: 120px;
         height: 120px;
     }
