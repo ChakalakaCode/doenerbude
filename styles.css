@@ -3361,13 +3361,13 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
 }
 
 .offer-item {
-    flex: 0 1 280px;
+    flex: 0 0 auto;
     text-align: center;
     transition: transform 0.3s ease;
 }
@@ -3509,7 +3509,8 @@ html {
     }
     
     .offer-content {
-        gap: 15px;
+        gap: 8px;
+        flex-wrap: wrap;
     }
     
     .offer-image {
