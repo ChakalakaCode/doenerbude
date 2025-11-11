@@ -3577,3 +3577,249 @@ html {
         font-size: 0.95rem;
     }
 }
+
+/* Pizza Special Offers Section */
+.pizza-special {
+    background: #ffd700;
+    padding: 80px 0;
+    position: relative;
+}
+
+.pizza-offer-box {
+    background: #000;
+    border: 4px solid #ffd700;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.pizza-offer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.pizza-offer-image {
+    flex: 0 0 auto;
+}
+
+.pizza-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #ffd700;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+}
+
+.pizza-offer-details {
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.pizza-offer-details h3 {
+    color: #ffd700;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.pizza-price {
+    background: #ffd700;
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: 3px solid #000;
+}
+
+.pizza-price .price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #000;
+}
+
+/* Family Deal */
+.family-deal {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+}
+
+.family-deal-title {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.pizza-offer-content-family {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+}
+
+.family-item {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.family-item p {
+    color: #ffd700;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.family-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffd700;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+.family-drink-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 15px;
+    border: 4px solid #ffd700;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+.text-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.family-plus,
+.family-equals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.plus-sign-pizza,
+.equals-sign-pizza {
+    font-size: 3rem;
+    color: #ffd700;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.family-price {
+    text-align: center;
+    background: #ffd700;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    border: 3px solid #000;
+    flex: 0 0 auto;
+}
+
+.price-amount-pizza {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #000;
+    line-height: 1;
+}
+
+.price-label-pizza {
+    font-size: 1.1rem;
+    color: #000;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+/* Responsive Pizza Offers */
+@media (max-width: 968px) {
+    .pizza-offer-content-family {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .family-img,
+    .family-drink-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .plus-sign-pizza,
+    .equals-sign-pizza {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pizza-special {
+        padding: 40px 0;
+    }
+    
+    .pizza-offer-box {
+        padding: 20px;
+    }
+    
+    .pizza-img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .pizza-offer-details h3 {
+        font-size: 1.5rem;
+    }
+    
+    .pizza-price .price {
+        font-size: 2.5rem;
+    }
+    
+    .family-deal-title {
+        font-size: 1.8rem;
+    }
+    
+    .family-img,
+    .family-drink-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .price-amount-pizza {
+        font-size: 2.5rem;
+    }
+    
+    .family-item p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pizza-img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .family-deal-title {
+        font-size: 1.3rem;
+    }
+    
+    .pizza-offer-content-family {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .family-img,
+    .family-drink-img {
+        width: 120px;
+        height: 120px;
+    }
+}
