@@ -3382,10 +3382,11 @@ html {
     object-fit: contain;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 4px solid #ffd700;
+    border: none;
     transition: all 0.3s ease;
     background: transparent;
-    mix-blend-mode: normal;
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.05);
 }
 
 .offer-image:hover {
@@ -3482,6 +3483,24 @@ html {
     font-size: 1.5rem;
 }
 
+.pom-info-box {
+    margin-top: 30px;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border-radius: 15px;
+    border: 3px solid #000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.pom-info-box p {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #000;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
 /* Responsive Design for Tuesday Offer */
 @media (max-width: 768px) {
     .offer-title {
@@ -3523,6 +3542,10 @@ html {
         padding: 15px 35px;
         font-size: 1.1rem;
     }
+    
+    .pom-info-box p {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3548,5 +3571,13 @@ html {
     .plus-sign,
     .equals-sign {
         font-size: 2rem;
+    }
+    
+    .pom-info-box {
+        padding: 15px 20px;
+    }
+    
+    .pom-info-box p {
+        font-size: 0.95rem;
     }
 }
