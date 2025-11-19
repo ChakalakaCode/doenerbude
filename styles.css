@@ -2196,7 +2196,12 @@ html {
 
 @media (max-width: 576px) {
     .about-content {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        margin: 1.5rem auto;
+        box-sizing: border-box;
+        text-align: center;
     }
     
     .features {
@@ -2204,7 +2209,12 @@ html {
     }
     
     .about-text h2 {
-        font-size: 2rem;
+        font-size: 1.7rem;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 }
 
