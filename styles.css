@@ -3241,7 +3241,7 @@ html {
 }
 
 .legal-section a {
-    color: #ffd700;
+    color: #000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
