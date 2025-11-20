@@ -1,4 +1,5 @@
 // DOM Elements
+const GA_MEASUREMENT_ID = 'G-KMLFEZJ49P';
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const categoryBtns = document.querySelectorAll('.category-btn');
@@ -11,19 +12,22 @@ const orderSummary = document.getElementById('orderSummary');
 // Order cart
 let cart = [];
 //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
-// Mobile Navigation Toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+// Mobile Navigation Toggle (optional on some pages)
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -114,42 +118,51 @@ categoryBtns.forEach(btn => {
     });
 });
 
-// Add to cart functionality
-orderBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const itemName = btn.getAttribute('data-item');
-        const itemPrice = parseFloat(btn.getAttribute('data-price'));
-        
-        // Add item to cart
-        const existingItem = cart.find(item => item.name === itemName);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                name: itemName,
+// Add to cart functionality (only on pages with order buttons and modal)
+if (orderBtns.length && modal && orderSummary) {
+    orderBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const itemName = btn.getAttribute('data-item');
+            const itemPrice = parseFloat(btn.getAttribute('data-price'));
+            
+            // Add item to cart
+            const existingItem = cart.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: itemName,
+                    price: itemPrice,
+                    quantity: 1
+                });
+            }
+
+            // GA: Menü-Bestellung geklickt
+            trackEvent('click_order_item', {
+                item_name: itemName,
                 price: itemPrice,
-                quantity: 1
+                location: 'menu_item_button'
             });
-        }
-        
-        // Visual feedback
-        btn.innerHTML = '<i class="fas fa-check"></i> Hinzugefügt!';
-        btn.style.background = '#27ae60';
-        
-        setTimeout(() => {
-            btn.innerHTML = '<i class="fas fa-plus"></i> Bestellen';
-            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-        }, 1500);
-        
-        // Show cart notification
-        showCartNotification();
-        
-        // Update cart display if modal is open
-        if (modal.style.display === 'block') {
-            updateOrderSummary();
-        }
+            
+            // Visual feedback
+            btn.innerHTML = '<i class="fas fa-check"></i> Hinzugefügt!';
+            btn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-plus"></i> Bestellen';
+                btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            }, 1500);
+            
+            // Show cart notification
+            showCartNotification();
+            
+            // Update cart display if modal is open
+            if (modal && modal.style.display === 'block') {
+                updateOrderSummary();
+            }
+        });
     });
-});
+}
 
 // Show cart notification
 function showCartNotification() {
@@ -206,9 +219,15 @@ function showCartNotification() {
 
 // Open order modal
 function openOrderModal() {
+    if (!modal || !orderSummary) return;
     updateOrderSummary();
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    // GA: Warenkorb/Bestellmodal geöffnet
+    trackEvent('open_order_modal', {
+        item_count: cart.length
+    });
 }
 
 // Update order summary
@@ -275,19 +294,21 @@ function removeItem(index) {
     updateOrderSummary();
 }
 
-// Close modal
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
+// Close modal (only if modal exists on this page)
+if (modal && closeModal) {
+    closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
-    }
-});
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
 
 // Add CSS animations for notifications
 const style = document.createElement('style');
@@ -459,17 +480,218 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transition = 'all 0.6s ease';
         observer.observe(item);
     });
+
+    // GA: Telefon-Links tracken
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', () => {
+            const label = link.textContent.trim() || link.getAttribute('href');
+            trackEvent('click_call', {
+                location: 'link',
+                label
+            });
+        });
+    });
+
+    // GA: PDF-Speisekarte Download
+    const menuPdfLink = document.querySelector('a[href$="Speisekarte.pdf"]');
+    if (menuPdfLink) {
+        menuPdfLink.addEventListener('click', () => {
+            trackEvent('download_menu_pdf', {
+                file: 'Speisekarte.pdf'
+            });
+        });
+    }
+
+    // GA: Route planen Button bei der Map
+    const routeBtn = document.querySelector('.btn-map');
+    if (routeBtn) {
+        routeBtn.addEventListener('click', () => {
+            trackEvent('click_route', {
+                destination: 'Warendorferstrasse 21, 48361 Beelen'
+            });
+        });
+    }
+
+    // GA: Video-Start tracken
+    if (video) {
+        video.addEventListener('play', () => {
+            trackEvent('play_video', {
+                video_id: 'restaurantVideo'
+            });
+        }, { once: true });
+    }
+});
+
+// Cookie Consent & Google Analytics
+function loadGoogleAnalytics() {
+    if (!GA_MEASUREMENT_ID) return;
+    if (window.gtagInitialized) return;
+
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);} // eslint-disable-line no-inner-declarations
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+
+    window.gtagInitialized = true;
+}
+
+function trackEvent(eventName, params = {}) {
+    if (!window.gtagInitialized || typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, params);
+}
+
+function createCookieBanner() {
+    if (document.querySelector('.cookie-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <h3>Cookies & Datenschutz</h3>
+                <p>Wir verwenden Cookies für den technischen Betrieb und anonyme Statistiken (Google Analytics). Sie können selbst entscheiden, wie wir Cookies setzen.</p>
+                <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem;">Details finden Sie in unserer <a href="datenschutz.html" style="color:#ffd700; text-decoration: underline;">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-necessary">Nur notwendige Cookies</button>
+                <button class="cookie-btn cookie-all">Alle akzeptieren (inkl. Statistik)</button>
+            </div>
+        </div>
+    `;
+
+    banner.style.cssText = `
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 1rem;
+        box-sizing: border-box;
+        font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        pointer-events: none;
+    `;
+
+    const inner = banner.querySelector('.cookie-banner-inner');
+    const actions = banner.querySelector('.cookie-banner-actions');
+    const necessaryBtn = banner.querySelector('.cookie-necessary');
+    const allBtn = banner.querySelector('.cookie-all');
+
+    if (inner) {
+        inner.style.cssText = `
+            background: rgba(0,0,0,0.96);
+            color: #fff;
+            border-radius: 14px;
+            max-width: 960px;
+            width: 100%;
+            padding: 1.2rem 1.4rem;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: auto;
+        `;
+    }
+
+    const text = banner.querySelector('.cookie-banner-text');
+    if (text) {
+        text.style.cssText = `
+            flex: 1 1 220px;
+            font-size: 0.9rem;
+        `;
+    }
+
+    if (actions) {
+        actions.style.cssText = `
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        `;
+    }
+
+    [necessaryBtn, allBtn].forEach(btn => {
+        if (!btn) return;
+        btn.style.cssText = `
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        `;
+    });
+
+    if (necessaryBtn) {
+        necessaryBtn.style.background = '#2c3e50';
+        necessaryBtn.style.color = '#fff';
+        necessaryBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'necessary');
+            // Google Analytics gilt hier als notwendig und wird daher ebenfalls geladen
+            loadGoogleAnalytics();
+            banner.remove();
+        });
+    }
+
+    if (allBtn) {
+        allBtn.style.background = '#27ae60';
+        allBtn.style.color = '#fff';
+        allBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'all');
+            loadGoogleAnalytics();
+            banner.remove();
+        });
+    }
+
+    document.body.appendChild(banner);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        let consent = localStorage.getItem('cookieConsent');
+
+        // Alte Werte migrieren
+        if (consent === 'accepted') {
+            consent = 'all';
+            localStorage.setItem('cookieConsent', 'all');
+        } else if (consent === 'rejected') {
+            consent = 'necessary';
+            localStorage.setItem('cookieConsent', 'necessary');
+        }
+
+        if (consent === 'all' || consent === 'necessary') {
+            // Google Analytics wird in beiden Fällen geladen
+            loadGoogleAnalytics();
+        } else if (!consent) {
+            createCookieBanner();
+        }
+        // Bei bereits getroffener Entscheidung (all/necessary) zeigen wir das Banner nicht erneut.
+    } catch (e) {
+        console.error('Cookie consent konnte nicht gelesen werden:', e);
+    }
 });
 
 // Add floating action button for quick order
 function createFloatingOrderButton() {
     const fab = document.createElement('div');
+
     fab.className = 'floating-action-btn';
     fab.innerHTML = `
         <i class="fas fa-phone"></i>
         <span>Bestellen</span>
     `;
-    
+
     fab.style.cssText = `
         position: fixed;
         bottom: 20px;
@@ -488,16 +710,19 @@ function createFloatingOrderButton() {
         transition: all 0.3s ease;
         text-decoration: none;
     `;
-    
+
     fab.addEventListener('click', () => {
+        trackEvent('click_call', {
+            location: 'floating_button'
+        });
         window.location.href = 'tel:+4925868828866';
     });
-    
+
     fab.addEventListener('mouseenter', () => {
         fab.style.transform = 'translateY(-3px) scale(1.05)';
         fab.style.boxShadow = '0 8px 30px rgba(231, 76, 60, 0.5)';
     });
-    
+
     fab.addEventListener('mouseleave', () => {
         fab.style.transform = 'translateY(0) scale(1)';
         fab.style.boxShadow = '0 5px 20px rgba(231, 76, 60, 0.4)';
