@@ -8,10 +8,27 @@ const orderBtns = document.querySelectorAll('.order-btn-item');
 const modal = document.getElementById('orderModal');
 const closeModal = document.querySelector('.close');
 const orderSummary = document.getElementById('orderSummary');
+const headerEl = document.querySelector('.header');
+const heroSection = document.querySelector('.hero');
+const heroContent = document.querySelector('.hero-content');
+const heroImage = document.querySelector('.hero-image');
 
 // Order cart
 let cart = [];
-//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
+
+// Throttle helper to improve scroll/resize performance
+function throttle(fn, limit) {
+    let inThrottle;
+    return function (...args) {
+        if (!inThrottle) {
+            fn.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => {
+                inThrottle = false;
+            }, limit);
+        }
+    };
+}
 
 // Mobile Navigation Toggle (optional on some pages)
 if (hamburger && navMenu) {
@@ -50,6 +67,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Video autoplay on scroll
 const video = document.getElementById('restaurantVideo');
 const videoSection = document.querySelector('.restaurant-video');
+const videoSource = video ? video.querySelector('source') : null;
 
 const videoObserverOptions = {
     root: null,
@@ -59,7 +77,18 @@ const videoObserverOptions = {
 
 const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        if (!video) return;
+
         if (entry.isIntersecting) {
+            // Quelle erst bei Sichtbarkeit setzen (Lazy Loading)
+            if (videoSource && !videoSource.src) {
+                const dataSrc = videoSource.getAttribute('data-src');
+                if (dataSrc) {
+                    videoSource.src = dataSrc;
+                    video.load();
+                }
+            }
+
             // Video ist sichtbar - starte Wiedergabe
             video.play().catch(e => {
                 console.log('Autoplay failed:', e);
@@ -76,16 +105,18 @@ if (video && videoSection) {
 }
 
 // Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
+function handleHeaderScroll() {
+    if (!headerEl) return;
     if (window.scrollY > 100) {
-        header.style.background = '#000';
-        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+        headerEl.style.background = '#000';
+        headerEl.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
     } else {
-        header.style.background = '#000';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+        headerEl.style.background = '#000';
+        headerEl.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
     }
-});
+}
+
+window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
 
 // Menu category filtering
 categoryBtns.forEach(btn => {
@@ -172,38 +203,7 @@ function showCartNotification() {
     notification.innerHTML = `
         <i class="fas fa-shopping-cart"></i>
         <span>Artikel zum Warenkorb hinzugefügt!</span>
-        <button onclick="openOrderModal()">Warenkorb anzeigen</button>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: linear-gradient(135deg, #27ae60, #2ecc71);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        z-index: 1500;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        animation: slideInRight 0.3s ease-out;
-        max-width: 300px;
-    `;
-    
-    // Add button styles
-    const button = notification.querySelector('button');
-    button.style.cssText = `
-        background: rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
+        <button class="cart-notification-btn" onclick="openOrderModal()">Warenkorb anzeigen</button>
     `;
     
     document.body.appendChild(notification);
@@ -217,498 +217,15 @@ function showCartNotification() {
     }, 4000);
 }
 
-// Open order modal
-function openOrderModal() {
-    if (!modal || !orderSummary) return;
-    updateOrderSummary();
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-
-    // GA: Warenkorb/Bestellmodal geöffnet
-    trackEvent('open_order_modal', {
-        item_count: cart.length
-    });
-}
-
-// Update order summary
-function updateOrderSummary() {
-    if (cart.length === 0) {
-        orderSummary.innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #bdc3c7; margin-bottom: 1rem;"></i>
-                <p>Ihr Warenkorb ist leer</p>
-                <p style="color: #666; font-size: 0.9rem;">Fügen Sie Artikel aus der Speisekarte hinzu</p>
-            </div>
-        `;
-        return;
-    }
-    
-    let total = 0;
-    let summaryHTML = '<div class="cart-items">';
-    
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        
-        summaryHTML += `
-            <div class="cart-item">
-                <div class="item-info">
-                    <h4>${item.name}</h4>
-                    <p>€${item.price.toFixed(2)} × ${item.quantity}</p>
-                </div>
-                <div class="item-controls">
-                    <button onclick="updateQuantity(${index}, -1)" class="qty-btn">-</button>
-                    <span class="quantity">${item.quantity}</span>
-                    <button onclick="updateQuantity(${index}, 1)" class="qty-btn">+</button>
-                    <button onclick="removeItem(${index})" class="remove-btn">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <div class="item-total">€${itemTotal.toFixed(2)}</div>
-            </div>
-        `;
-    });
-    
-    summaryHTML += `
-        </div>
-        <div class="cart-total">
-            <h3>Gesamtsumme: €${total.toFixed(2)}</h3>
-        </div>
-    `;
-    
-    orderSummary.innerHTML = summaryHTML;
-}
-
-// Update item quantity
-function updateQuantity(index, change) {
-    cart[index].quantity += change;
-    if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-    }
-    updateOrderSummary();
-}
-
-// Remove item from cart
-function removeItem(index) {
-    cart.splice(index, 1);
-    updateOrderSummary();
-}
-
-// Close modal (only if modal exists on this page)
-if (modal && closeModal) {
-    closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Add CSS animations for notifications
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-    }
-    
-    .cart-items {
-        max-height: 300px;
-        overflow-y: auto;
-        margin-bottom: 1rem;
-    }
-    
-    .cart-item {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
-        gap: 1rem;
-        align-items: center;
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-        background: #f8f9fa;
-        border-radius: 10px;
-        margin-bottom: 0.5rem;
-    }
-    
-    .item-info h4 {
-        margin: 0 0 0.5rem 0;
-        color: #2c3e50;
-    }
-    
-    .item-info p {
-        margin: 0;
-        color: #666;
-        font-size: 0.9rem;
-    }
-    
-    .item-controls {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .qty-btn {
-        width: 30px;
-        height: 30px;
-        border: 1px solid #ddd;
-        background: white;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-    
-    .qty-btn:hover {
-        background: #e74c3c;
-        color: white;
-        border-color: #e74c3c;
-    }
-    
-    .quantity {
-        font-weight: 600;
-        min-width: 20px;
-        text-align: center;
-    }
-    
-    .remove-btn {
-        background: #e74c3c;
-        color: white;
-        border: none;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        margin-left: 0.5rem;
-    }
-    
-    .remove-btn:hover {
-        background: #c0392b;
-        transform: scale(1.1);
-    }
-    
-    .item-total {
-        font-weight: 700;
-        color: #e74c3c;
-        font-size: 1.1rem;
-    }
-    
-    .cart-total {
-        text-align: center;
-        padding: 1rem;
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        color: white;
-        border-radius: 10px;
-        margin-top: 1rem;
-    }
-    
-    .cart-total h3 {
-        margin: 0;
-        font-size: 1.3rem;
-    }
-    
-    .empty-cart {
-        text-align: center;
-        padding: 2rem;
-        color: #666;
-    }
-    
-    .empty-cart i {
-        display: block;
-        margin-bottom: 1rem;
-    }
-`;
-document.head.appendChild(style);
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe menu items for scroll animations
-document.addEventListener('DOMContentLoaded', () => {
-    // Add initial styles for animation
-    menuItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = 'all 0.6s ease';
-        observer.observe(item);
-    });
-    
-    // Add animation to contact items
-    document.querySelectorAll('.contact-item').forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = 'all 0.6s ease';
-        observer.observe(item);
-    });
-
-    // GA: Telefon-Links tracken
-    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-        link.addEventListener('click', () => {
-            const label = link.textContent.trim() || link.getAttribute('href');
-            trackEvent('click_call', {
-                location: 'link',
-                label
-            });
-        });
-    });
-
-    // GA: PDF-Speisekarte Download
-    const menuPdfLink = document.querySelector('a[href$="Speisekarte.pdf"]');
-    if (menuPdfLink) {
-        menuPdfLink.addEventListener('click', () => {
-            trackEvent('download_menu_pdf', {
-                file: 'Speisekarte.pdf'
-            });
-        });
-    }
-
-    // GA: Route planen Button bei der Map
-    const routeBtn = document.querySelector('.btn-map');
-    if (routeBtn) {
-        routeBtn.addEventListener('click', () => {
-            trackEvent('click_route', {
-                destination: 'Warendorferstrasse 21, 48361 Beelen'
-            });
-        });
-    }
-
-    // GA: Video-Start tracken
-    if (video) {
-        video.addEventListener('play', () => {
-            trackEvent('play_video', {
-                video_id: 'restaurantVideo'
-            });
-        }, { once: true });
-    }
-});
-
-// Cookie Consent & Google Analytics
-function loadGoogleAnalytics() {
-    if (!GA_MEASUREMENT_ID) return;
-    if (window.gtagInitialized) return;
-
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    document.head.appendChild(gaScript);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);} // eslint-disable-line no-inner-declarations
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID);
-
-    window.gtagInitialized = true;
-}
-
-function trackEvent(eventName, params = {}) {
-    if (!window.gtagInitialized || typeof window.gtag !== 'function') return;
-    window.gtag('event', eventName, params);
-}
-
-function createCookieBanner() {
-    if (document.querySelector('.cookie-banner')) return;
-
-    const banner = document.createElement('div');
-    banner.className = 'cookie-banner';
-    banner.innerHTML = `
-        <div class="cookie-banner-inner">
-            <div class="cookie-banner-text">
-                <h3>Cookies & Datenschutz</h3>
-                <p>Wir verwenden Cookies für den technischen Betrieb und anonyme Statistiken (Google Analytics). Sie können selbst entscheiden, wie wir Cookies setzen.</p>
-                <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem;">Details finden Sie in unserer <a href="datenschutz.html" style="color:#ffd700; text-decoration: underline;">Datenschutzerklärung</a>.</p>
-            </div>
-            <div class="cookie-banner-actions">
-                <button class="cookie-btn cookie-necessary">Nur notwendige Cookies</button>
-                <button class="cookie-btn cookie-all">Alle akzeptieren (inkl. Statistik)</button>
-            </div>
-        </div>
-    `;
-
-    banner.style.cssText = `
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 2000;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 1rem;
-        box-sizing: border-box;
-        font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        pointer-events: none;
-    `;
-
-    const inner = banner.querySelector('.cookie-banner-inner');
-    const actions = banner.querySelector('.cookie-banner-actions');
-    const necessaryBtn = banner.querySelector('.cookie-necessary');
-    const allBtn = banner.querySelector('.cookie-all');
-
-    if (inner) {
-        inner.style.cssText = `
-            background: rgba(0,0,0,0.96);
-            color: #fff;
-            border-radius: 14px;
-            max-width: 960px;
-            width: 100%;
-            padding: 1.2rem 1.4rem;
-            box-shadow: 0 18px 45px rgba(0,0,0,0.6);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1rem;
-            align-items: center;
-            justify-content: space-between;
-            pointer-events: auto;
-        `;
-    }
-
-    const text = banner.querySelector('.cookie-banner-text');
-    if (text) {
-        text.style.cssText = `
-            flex: 1 1 220px;
-            font-size: 0.9rem;
-        `;
-    }
-
-    if (actions) {
-        actions.style.cssText = `
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: flex-end;
-        `;
-    }
-
-    [necessaryBtn, allBtn].forEach(btn => {
-        if (!btn) return;
-        btn.style.cssText = `
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 999px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        `;
-    });
-
-    if (necessaryBtn) {
-        necessaryBtn.style.background = '#2c3e50';
-        necessaryBtn.style.color = '#fff';
-        necessaryBtn.addEventListener('click', () => {
-            localStorage.setItem('cookieConsent', 'necessary');
-            // Google Analytics gilt hier als notwendig und wird daher ebenfalls geladen
-            loadGoogleAnalytics();
-            banner.remove();
-        });
-    }
-
-    if (allBtn) {
-        allBtn.style.background = '#27ae60';
-        allBtn.style.color = '#fff';
-        allBtn.addEventListener('click', () => {
-            localStorage.setItem('cookieConsent', 'all');
-            loadGoogleAnalytics();
-            banner.remove();
-        });
-    }
-
-    document.body.appendChild(banner);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    try {
-        let consent = localStorage.getItem('cookieConsent');
-
-        // Alte Werte migrieren
-        if (consent === 'accepted') {
-            consent = 'all';
-            localStorage.setItem('cookieConsent', 'all');
-        } else if (consent === 'rejected') {
-            consent = 'necessary';
-            localStorage.setItem('cookieConsent', 'necessary');
-        }
-
-        if (consent === 'all' || consent === 'necessary') {
-            // Google Analytics wird in beiden Fällen geladen
-            loadGoogleAnalytics();
-        } else if (!consent) {
-            createCookieBanner();
-        }
-        // Bei bereits getroffener Entscheidung (all/necessary) zeigen wir das Banner nicht erneut.
-    } catch (e) {
-        console.error('Cookie consent konnte nicht gelesen werden:', e);
-    }
-});
-
 // Add floating action button for quick order
 function createFloatingOrderButton() {
     const fab = document.createElement('div');
 
     fab.className = 'floating-action-btn';
+
     fab.innerHTML = `
         <i class="fas fa-phone"></i>
         <span>Bestellen</span>
-    `;
-
-    fab.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 50px;
-        box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
-        cursor: pointer;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        text-decoration: none;
     `;
 
     fab.addEventListener('click', () => {
@@ -717,30 +234,23 @@ function createFloatingOrderButton() {
         });
         window.location.href = 'tel:+4925868828866';
     });
-
-    fab.addEventListener('mouseenter', () => {
-        fab.style.transform = 'translateY(-3px) scale(1.05)';
-        fab.style.boxShadow = '0 8px 30px rgba(231, 76, 60, 0.5)';
-    });
-
-    fab.addEventListener('mouseleave', () => {
-        fab.style.transform = 'translateY(0) scale(1)';
-        fab.style.boxShadow = '0 5px 20px rgba(231, 76, 60, 0.4)';
-    });
     
     document.body.appendChild(fab);
     
     // Hide/show on scroll
     let lastScrollTop = 0;
-    window.addEventListener('scroll', () => {
+    function handleFabScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop > lastScrollTop && scrollTop > 200) {
+            fab.classList.add('hidden');
             fab.style.transform = 'translateY(100px)';
         } else {
             fab.style.transform = 'translateY(0)';
         }
         lastScrollTop = scrollTop;
-    });
+    }
+
+    window.addEventListener('scroll', throttle(handleFabScroll, 100));
 }
 
 // Initialize floating action button
@@ -769,18 +279,23 @@ window.addEventListener('load', () => {
     typeWriter(heroTitle, originalText, 150);
 });
 
-// Add parallax effect to hero section
+// Add parallax effect to hero section (optimized with requestAnimationFrame)
+let lastScrollY = window.pageYOffset || 0;
+
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (hero && scrolled < hero.offsetHeight) {
+    lastScrollY = window.pageYOffset || 0;
+});
+
+function updateParallax() {
+    if (heroSection && heroContent && heroImage && lastScrollY < heroSection.offsetHeight) {
+        const scrolled = lastScrollY;
         heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
         heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
-});
+    window.requestAnimationFrame(updateParallax);
+}
+
+window.requestAnimationFrame(updateParallax);
 
 // Collapsible Menu Sections
 document.addEventListener('DOMContentLoaded', () => {

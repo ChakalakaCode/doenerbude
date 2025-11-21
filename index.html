@@ -109,7 +109,7 @@
         </div>
         <div class="hero-image">
             <div class="hero-logo-animation">
-                <img src="berlin.jpg" alt="Dönerbude Logo" class="hero-logo-image" width="400" height="400">
+                <img src="berlin.jpg" alt="Dönerbude Logo" class="hero-logo-image" width="400" height="400" loading="lazy">
             </div>
         </div>
     </section>
@@ -124,12 +124,11 @@
                     <video 
                         controls 
                         muted
-                        autoplay
                         preload="metadata"
                         class="restaurant-video-player"
                         id="restaurantVideo"
                     >
-                        <source src="restaurant-video.mp4" type="video/mp4">
+                        <source data-src="restaurant-video.mp4" type="video/mp4">
                         <p>Ihr Browser unterstützt das Video-Element nicht. 
                            <a href="restaurant-video.mp4">Video herunterladen</a>
                         </p>
