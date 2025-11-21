@@ -280,29 +280,32 @@ window.addEventListener('load', () => {
 });
 
 // Add parallax effect to hero section (optimized with requestAnimationFrame)
+const isDesktopViewport = window.matchMedia('(min-width: 769px)').matches;
 let lastScrollY = window.pageYOffset || 0;
 let heroHeight = heroSection ? heroSection.offsetHeight : 0;
 
-window.addEventListener('scroll', () => {
-    lastScrollY = window.pageYOffset || 0;
-});
+if (isDesktopViewport) {
+    window.addEventListener('scroll', () => {
+        lastScrollY = window.pageYOffset || 0;
+    });
 
-window.addEventListener('resize', throttle(() => {
-    if (heroSection) {
-        heroHeight = heroSection.offsetHeight;
-    }
-}, 200));
+    window.addEventListener('resize', throttle(() => {
+        if (heroSection) {
+            heroHeight = heroSection.offsetHeight;
+        }
+    }, 200));
 
-function updateParallax() {
-    if (heroSection && heroContent && heroImage && lastScrollY < heroHeight) {
-        const scrolled = lastScrollY;
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+    function updateParallax() {
+        if (heroSection && heroContent && heroImage && lastScrollY < heroHeight) {
+            const scrolled = lastScrollY;
+            heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+        window.requestAnimationFrame(updateParallax);
     }
+
     window.requestAnimationFrame(updateParallax);
 }
-
-window.requestAnimationFrame(updateParallax);
 
 // Collapsible Menu Sections
 document.addEventListener('DOMContentLoaded', () => {
