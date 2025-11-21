@@ -1169,7 +1169,7 @@ html {
     padding: 2rem 0;
     position: relative;
     overflow: hidden;
-    background: url('hero-background.jpg') no-repeat center center;
+    background: url('hero-background.avif') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     color: #fff;
@@ -1530,7 +1530,7 @@ html {
     flex-wrap: wrap;
     margin-top: 2rem;
     padding: 2rem 3rem;
-    background-image: url('board.jpeg');
+    background-image: url('board.avif');
     background-size: cover;
     background-position: center;
     border-radius: 20px;

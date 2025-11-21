@@ -275,8 +275,37 @@ function typeWriter(element, text, speed = 100) {
 // Initialize typing effect when page loads
 window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
-    const originalText = heroTitle.textContent;
-    typeWriter(heroTitle, originalText, 150);
+    if (heroTitle) {
+        const originalText = heroTitle.textContent;
+        typeWriter(heroTitle, originalText, 150);
+    }
+});
+
+// Click-to-load Google Maps to reduce initial JS/CSS payload
+document.addEventListener('DOMContentLoaded', () => {
+    const mapPlaceholder = document.getElementById('mapPlaceholder');
+    const loadMapButton = document.getElementById('loadMapButton');
+
+    if (!mapPlaceholder || !loadMapButton) return;
+
+    loadMapButton.addEventListener('click', () => {
+        const mapSrc = mapPlaceholder.getAttribute('data-map-src');
+        if (!mapSrc) return;
+
+        const iframe = document.createElement('iframe');
+        iframe.title = 'Karte Dönerbude Beelen';
+        iframe.src = mapSrc;
+        iframe.width = '100%';
+        iframe.height = '400';
+        iframe.style.border = '0';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.allowFullscreen = true;
+
+        // Remove button and insert iframe
+        mapPlaceholder.innerHTML = '';
+        mapPlaceholder.appendChild(iframe);
+    });
 });
 
 // Add parallax effect to hero section (optimized with requestAnimationFrame)

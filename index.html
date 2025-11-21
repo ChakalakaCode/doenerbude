@@ -9,7 +9,7 @@
     <meta name="description" content="Beelen Döner und Pizza Beelen in der Dönerbude Beelen – original Berliner Döner, Beelen Pizza und mehr. Authentischer Döner nach Berliner Originalrezept in der Warendorferstraße 21. Telefonisch vorbestellen: 02586 88 2 88 66.">
     <meta name="keywords" content="Beelen Döner, Döner Beelen, Dönerbude Beelen, Original Berliner Döner Beelen, Döner Berlin Rezept, Pizza Beelen, Beelen Pizza, Warendorferstraße, türkisches Restaurant Beelen">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" as="image" href="hero-background.jpg">
+    <link rel="preload" as="image" href="hero-background.avif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -118,7 +118,7 @@
             <div class="hero-logo-animation">
                 <picture>
                     <source srcset="berlin.avif" type="image/avif">
-                    <img src="berlin.jpg" alt="Dönerbude Logo" class="hero-logo-image" width="400" height="400" loading="lazy">
+                    <img src="berlin.jpg" alt="Dönerbude Logo" class="hero-logo-image" width="400" height="400" fetchpriority="high">
                 </picture>
             </div>
         </div>
@@ -180,20 +180,19 @@
                 </a>
             </div>
             
-            <!-- Google Maps Section -->
+            <!-- Google Maps Section (click-to-load to improve performance) -->
             <div class="map-container">
                 <h3 style="text-align: center; color: #ffd700; margin-bottom: 20px; font-size: 1.8rem;">📍 Finden Sie uns hier</h3>
                 <div class="map-wrapper">
-                    <iframe 
-                        title="Karte Dönerbude Beelen"
-                        src="https://www.google.com/maps?q=Warendorferstraße+21,+48361+Beelen,+Deutschland&output=embed"
-                        width="100%" 
-                        height="400" 
-                        style="border:0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <div 
+                        id="mapPlaceholder"
+                        class="map-placeholder"
+                        data-map-src="https://www.google.com/maps?q=Warendorferstraße+21,+48361+Beelen,+Deutschland&output=embed"
+                        style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; height: 400px;">
+                        <button id="loadMapButton" class="btn btn-map">
+                            <i class="fas fa-map-marked-alt"></i> Karte laden
+                        </button>
+                    </div>
                 </div>
                 <div class="address-info">
                     <p><i class="fas fa-map-marker-alt"></i> <strong>Warendorferstraße 21, 48361 Beelen</strong></p>
