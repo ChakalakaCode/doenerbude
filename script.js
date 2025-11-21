@@ -387,6 +387,27 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!consent) {
             createCookieBanner();
         }
+
+        // Track clicks on all telephone links
+        const telLinks = document.querySelectorAll('a[href^="tel:"]');
+        telLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const location = link.getAttribute('data-location') || link.textContent.trim() || 'unknown';
+                trackEvent('click_call', {
+                    location
+                });
+            });
+        });
+
+        // Track clicks on Speisekarte PDF download
+        const pdfLinks = document.querySelectorAll('a[href$="Speisekarte.pdf"]');
+        pdfLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('click_menu_pdf', {
+                    location: 'speisekarte_pdf'
+                });
+            });
+        });
     } catch (e) {
         console.error('Cookie consent konnte nicht gelesen werden:', e);
     }
