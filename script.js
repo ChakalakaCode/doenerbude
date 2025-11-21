@@ -217,6 +217,132 @@ function showCartNotification() {
     }, 4000);
 }
 
+// Google Analytics loader
+function loadGoogleAnalytics() {
+    if (!GA_MEASUREMENT_ID) return;
+    if (window.gtagInitialized) return;
+
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+    window.gtagInitialized = true;
+}
+
+// Safe event tracking helper
+function trackEvent(eventName, params = {}) {
+    if (!window.gtagInitialized || typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, params);
+}
+
+// Cookie consent banner
+function createCookieBanner() {
+    if (document.querySelector('.cookie-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <h3>Cookies & Datenschutz</h3>
+                <p>Wir verwenden Cookies für den technischen Betrieb und anonyme Statistiken (Google Analytics). Sie können selbst entscheiden, wie wir Cookies setzen.</p>
+                <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem;">Details finden Sie in unserer <a href="datenschutz.html" style="color:#ffd700; text-decoration: underline;">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-necessary">Nur notwendige Cookies</button>
+                <button class="cookie-btn cookie-all">Alle akzeptieren (inkl. Statistik)</button>
+            </div>
+        </div>
+    `;
+
+    banner.style.position = 'fixed';
+    banner.style.left = '0';
+    banner.style.right = '0';
+    banner.style.bottom = '0';
+    banner.style.zIndex = '2000';
+    banner.style.display = 'flex';
+    banner.style.justifyContent = 'center';
+    banner.style.alignItems = 'flex-end';
+    banner.style.padding = '1rem';
+    banner.style.boxSizing = 'border-box';
+    banner.style.fontFamily = "'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    banner.style.pointerEvents = 'none';
+
+    const inner = banner.querySelector('.cookie-banner-inner');
+    const text = banner.querySelector('.cookie-banner-text');
+    const actions = banner.querySelector('.cookie-banner-actions');
+    const necessaryBtn = banner.querySelector('.cookie-necessary');
+    const allBtn = banner.querySelector('.cookie-all');
+
+    if (inner) {
+        inner.style.background = 'rgba(0,0,0,0.96)';
+        inner.style.color = '#fff';
+        inner.style.borderRadius = '14px';
+        inner.style.maxWidth = '960px';
+        inner.style.width = '100%';
+        inner.style.padding = '1.2rem 1.4rem';
+        inner.style.boxShadow = '0 18px 45px rgba(0,0,0,0.6)';
+        inner.style.display = 'flex';
+        inner.style.flexWrap = 'wrap';
+        inner.style.gap = '0.75rem 1rem';
+        inner.style.alignItems = 'center';
+        inner.style.justifyContent = 'space-between';
+        inner.style.pointerEvents = 'auto';
+    }
+
+    if (text) {
+        text.style.flex = '1 1 220px';
+        text.style.fontSize = '0.9rem';
+    }
+
+    if (actions) {
+        actions.style.display = 'flex';
+        actions.style.flexWrap = 'wrap';
+        actions.style.gap = '0.5rem';
+        actions.style.justifyContent = 'flex-end';
+    }
+
+    [necessaryBtn, allBtn].forEach(btn => {
+        if (!btn) return;
+        btn.style.border = 'none';
+        btn.style.padding = '0.6rem 1.2rem';
+        btn.style.borderRadius = '999px';
+        btn.style.cursor = 'pointer';
+        btn.style.fontWeight = '600';
+        btn.style.fontSize = '0.9rem';
+        btn.style.whiteSpace = 'nowrap';
+    });
+
+    if (necessaryBtn) {
+        necessaryBtn.style.background = '#2c3e50';
+        necessaryBtn.style.color = '#fff';
+        necessaryBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'necessary');
+            loadGoogleAnalytics();
+            banner.remove();
+        });
+    }
+
+    if (allBtn) {
+        allBtn.style.background = '#27ae60';
+        allBtn.style.color = '#fff';
+        allBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'all');
+            loadGoogleAnalytics();
+            banner.remove();
+        });
+    }
+
+    document.body.appendChild(banner);
+}
+
 // Add typing effect to hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
@@ -236,9 +362,33 @@ function typeWriter(element, text, speed = 100) {
 // Initialize typing effect when page loads
 window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
+    
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         typeWriter(heroTitle, originalText, 150);
+    }
+});
+
+// Initialize cookie consent & Google Analytics
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        let consent = localStorage.getItem('cookieConsent');
+
+        if (consent === 'accepted') {
+            consent = 'all';
+            localStorage.setItem('cookieConsent', 'all');
+        } else if (consent === 'rejected') {
+            consent = 'necessary';
+            localStorage.setItem('cookieConsent', 'necessary');
+        }
+
+        if (consent === 'all' || consent === 'necessary') {
+            loadGoogleAnalytics();
+        } else if (!consent) {
+            createCookieBanner();
+        }
+    } catch (e) {
+        console.error('Cookie consent konnte nicht gelesen werden:', e);
     }
 });
 
