@@ -217,45 +217,6 @@ function showCartNotification() {
     }, 4000);
 }
 
-// Add floating action button for quick order
-function createFloatingOrderButton() {
-    const fab = document.createElement('div');
-
-    fab.className = 'floating-action-btn';
-
-    fab.innerHTML = `
-        <i class="fas fa-phone"></i>
-        <span>Bestellen</span>
-    `;
-
-    fab.addEventListener('click', () => {
-        trackEvent('click_call', {
-            location: 'floating_button'
-        });
-        window.location.href = 'tel:+4925868828866';
-    });
-    
-    document.body.appendChild(fab);
-    
-    // Hide/show on scroll
-    let lastScrollTop = 0;
-    function handleFabScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop && scrollTop > 200) {
-            fab.classList.add('hidden');
-            fab.style.transform = 'translateY(100px)';
-        } else {
-            fab.style.transform = 'translateY(0)';
-        }
-        lastScrollTop = scrollTop;
-    }
-
-    window.addEventListener('scroll', throttle(handleFabScroll, 100));
-}
-
-// Initialize floating action button
-document.addEventListener('DOMContentLoaded', createFloatingOrderButton);
-
 // Add typing effect to hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
