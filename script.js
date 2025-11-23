@@ -89,13 +89,7 @@ const videoObserver = new IntersectionObserver((entries) => {
                 }
             }
 
-            // Video ist sichtbar - starte Wiedergabe
-            video.play().catch(e => {
-                console.log('Autoplay failed:', e);
-            });
-        } else {
-            // Video ist nicht sichtbar - pausiere
-            video.pause();
+            // Kein Autoplay mehr: Video startet nur noch, wenn der Nutzer Play klickt
         }
     });
 }, videoObserverOptions);
