@@ -3924,6 +3924,44 @@ html {
     margin-top: 40px;
 }
 
+.seo-food-gallery {
+    margin-top: 40px;
+}
+
+.seo-food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    margin-top: 1.5rem;
+}
+
+.seo-food-item {
+    background: radial-gradient(circle at top, rgba(255, 215, 0, 0.12) 0%, rgba(0, 0, 0, 0.95) 55%, #000 100%);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    padding: 1.4rem 1.3rem 1.6rem;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+.seo-food-item picture {
+    display: block;
+    margin: 0 auto 0.9rem;
+}
+
+.seo-food-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+}
+
+.seo-food-text {
+    font-size: 0.95rem;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
 .seo-text h2,
 .seo-region h2,
 .seo-faq h2,
@@ -4054,5 +4092,20 @@ html {
     .seo-faq h2,
     .seo-cta h2 {
         font-size: 1.5rem;
+    }
+
+    .seo-food-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    .seo-food-item {
+        padding: 1.2rem 1rem 1.4rem;
+    }
+
+    .tuesday-special,
+    .pizza-special {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
