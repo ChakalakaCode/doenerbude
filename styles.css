@@ -3821,3 +3821,238 @@ html {
         height: 120px;
     }
 }
+
+/* SEO Page – Street-Food / Berlin Look */
+.seo-main {
+    padding: 120px 0 80px;
+    background: radial-gradient(circle at top, #222 0%, #000 55%, #111 100%);
+    color: #fff;
+}
+
+.seo-hero {
+    padding: 40px 0 60px;
+}
+
+.seo-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+    gap: 3rem;
+    align-items: center;
+}
+
+.seo-hero-text {
+    max-width: 640px;
+}
+
+.seo-hero-kicker {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ffd700;
+    margin-bottom: 0.75rem;
+}
+
+.seo-hero-title {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
+    margin-bottom: 1rem;
+}
+
+.seo-hero-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #f5f5f5;
+    opacity: 0.95;
+    margin-bottom: 0.75rem;
+}
+
+.seo-hero-btn {
+    margin-top: 1.2rem;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.5);
+}
+
+.seo-hero-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.seo-hero-logo-circle {
+    width: 320px;
+    height: 320px;
+    max-width: 80vw;
+    max-height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 20%, #ffd700 0%, #ffbb00 20%, #000 70%);
+    padding: 10px;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(255, 215, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-3deg);
+}
+
+.seo-hero-logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: contrast(1.35) brightness(1.2) saturate(1.2);
+}
+
+.seo-hero-tagline {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.seo-text,
+.seo-region,
+.seo-faq,
+.seo-cta {
+    margin-top: 40px;
+}
+
+.seo-text h2,
+.seo-region h2,
+.seo-faq h2,
+.seo-cta h2 {
+    color: #ffd700;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+.seo-text p,
+.seo-region p,
+.seo-faq p,
+.seo-cta p {
+    color: #f0f0f0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.seo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    margin-top: 2rem;
+}
+
+.seo-city-block {
+    background: radial-gradient(circle at top, rgba(255, 215, 0, 0.12) 0%, rgba(0, 0, 0, 0.95) 55%, #000 100%);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    padding: 1.5rem 1.4rem;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+.seo-city-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), transparent 40%, rgba(255, 255, 255, 0.03));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.seo-city-block:hover::before {
+    opacity: 1;
+}
+
+.seo-city-block h3 {
+    color: #ffd700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.7rem;
+}
+
+.seo-city-block p {
+    position: relative;
+    z-index: 1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.seo-keyword-list {
+    list-style: none;
+    margin: 1rem 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.seo-keyword-list li {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.seo-cta .phone-number {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 999px;
+    background: #ffd700;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 0.75rem;
+}
+
+.seo-cta .phone-number i {
+    color: #000;
+}
+
+@media (max-width: 900px) {
+    .seo-hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+    }
+
+    .seo-hero-text {
+        margin: 0 auto;
+    }
+
+    .seo-hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .seo-main {
+        padding-top: 110px;
+        padding-bottom: 60px;
+    }
+
+    .seo-hero-title {
+        font-size: 1.8rem;
+    }
+
+    .seo-text h2,
+    .seo-region h2,
+    .seo-faq h2,
+    .seo-cta h2 {
+        font-size: 1.5rem;
+    }
+}
