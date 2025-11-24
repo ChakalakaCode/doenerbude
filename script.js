@@ -402,6 +402,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+
+        // Track clicks on SEO city blocks (seo.html)
+        const seoCityBlocks = document.querySelectorAll('.seo-city-block');
+        seoCityBlocks.forEach(block => {
+            block.addEventListener('click', () => {
+                const heading = block.querySelector('h3');
+                const cityTitle = heading ? heading.textContent.trim() : 'unknown_city';
+                const regionSection = block.closest('[aria-label]');
+                const region = regionSection ? regionSection.getAttribute('aria-label') : 'unknown_region';
+
+                trackEvent('click_seo_city', {
+                    city: cityTitle,
+                    region
+                });
+            });
+        });
     } catch (e) {
         console.error('Cookie consent konnte nicht gelesen werden:', e);
     }
