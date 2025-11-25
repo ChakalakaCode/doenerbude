@@ -16,15 +16,17 @@
     <meta property="og:description" content="Original Berliner Döner in Beelen – Döner in der Nähe im Kreis Warendorf & Kreis Gütersloh. Dönerbude Beelen in der Warendorferstraße 21.">
     <meta property="og:url" content="https://www.beelen-doenerbude.de/">
     <meta property="og:site_name" content="Dönerbude Beelen">
-    <meta property="og:image" content="https://www.beelen-doenerbude.de/berlin.avif">
+    <meta property="og:image" content="https://www.beelen-doenerbude.de/berlin.jpg">
+    <meta property="og:image:type" content="image/jpeg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Original Berliner Döner in Beelen – Beelen Döner & Dönerbude Beelen">
     <meta name="twitter:description" content="Original Berliner Döner in Beelen – Döner in der Nähe im Kreis Warendorf & Kreis Gütersloh.">
-    <meta name="twitter:image" content="https://www.beelen-doenerbude.de/berlin.avif">
+    <meta name="twitter:image" content="https://www.beelen-doenerbude.de/berlin.jpg">
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" as="image" href="hero-background.avif">
-    <link rel="icon" type="image/avif" href="berlin.avif">
+    <link rel="icon" type="image/jpeg" href="berlin.jpg">
+    <link rel="apple-touch-icon" href="berlin.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -37,7 +39,7 @@
       "@context": "https://schema.org",
       "@type": "Restaurant",
       "name": "Dönerbude Beelen – Original Berliner Döner",
-      "image": "https://www.beelen-doenerbude.de/berlin.avif",
+      "image": "https://www.beelen-doenerbude.de/berlin.jpg",
       "@id": "https://www.beelen-doenerbude.de/",
       "url": "https://www.beelen-doenerbude.de/",
       "telephone": "+49 2586 8828866",
@@ -513,7 +515,6 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
                 <div class="footer-section">
                     <h3>Dönerbude Beelen</h3>
                     <p>Original Berliner Döner & Pizza in Beelen</p>
@@ -527,6 +528,13 @@
                     <h3>Rechtliches</h3>
                     <p><a href="impressum.html">Impressum</a></p>
                     <p><a href="datenschutz.html">Datenschutz</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <div class="social-links">
+                        <a href="https://www.tiktok.com/@doenerbude_beelen" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -535,6 +543,10 @@
             </div>
         </div>
     </footer>
+
+    <button class="share-button" id="shareButton" aria-label="Seite teilen">
+        <i class="fas fa-share-alt"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

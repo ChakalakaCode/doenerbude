@@ -12,6 +12,7 @@ const headerEl = document.querySelector('.header');
 const heroSection = document.querySelector('.hero');
 const heroContent = document.querySelector('.hero-content');
 const heroImage = document.querySelector('.hero-image');
+const shareButton = document.getElementById('shareButton');
 
 // Order cart
 let cart = [];
@@ -418,6 +419,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+
+        // Floating share button logic
+        if (shareButton) {
+            shareButton.addEventListener('click', () => {
+                const shareUrl = window.location.href.split('#')[0];
+                const shareTitle = document.title || 'Dönerbude Beelen – Original Berliner Döner';
+                const shareText = 'Original Berliner Döner & Pizza in Beelen – Dönerbude Beelen, Warendorferstraße 21.';
+
+                trackEvent('click_share_button', {
+                    method: (navigator.share ? 'web_share_api' : 'whatsapp_fallback')
+                });
+
+                if (navigator.share && typeof navigator.share === 'function') {
+                    navigator.share({
+                        title: shareTitle,
+                        text: shareText,
+                        url: shareUrl
+                    }).catch(() => {
+                        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`;
+                        window.open(whatsappUrl, '_blank');
+                    });
+                } else {
+                    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`;
+                    window.open(whatsappUrl, '_blank');
+                }
+            });
+        }
     } catch (e) {
         console.error('Cookie consent konnte nicht gelesen werden:', e);
     }
