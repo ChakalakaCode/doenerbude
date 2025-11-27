@@ -2046,30 +2046,6 @@ html {
         grid-template-columns: 1fr;
     }
     
-    .pizza-note {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    .pizza-price-highlight {
-        font-size: 1.5rem;
-        padding: 0.3rem 0.8rem;
-    }
-    
-    .logo-circle-new {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .logo-beelen {
-        font-size: 1.3rem;
-        margin-left: 0.8rem;
-    }
-    
-    .order-btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
     }
     
     .container {
@@ -2510,8 +2486,8 @@ html {
     }
     
     .logo-circle-new {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         border-width: 3px;
         padding: 8px;
         overflow: visible;
@@ -3025,8 +3001,8 @@ html {
     }
     
     .logo-circle-new {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     
     .logo {
@@ -3146,8 +3122,8 @@ html {
     }
     
     .logo-circle-new {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     
     .logo-beelen {
