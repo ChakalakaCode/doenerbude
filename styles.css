@@ -1742,63 +1742,63 @@ font-size: 1.3rem;
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding-top: 100px;
-    }
+body {
+padding-top: 100px;
+}
 
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        cursor: pointer;
-        z-index: 1001;
-    }
+.hamburger {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width: 30px;
+height: 21px;
+cursor: pointer;
+z-index: 1001;
+}
 
-    .hamburger span {
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: #ffd700;
-        transition: all 0.3s ease-in-out;
-    }
+.hamburger span {
+display: block;
+width: 100%;
+height: 3px;
+background-color: #ffd700;
+transition: all 0.3s ease-in-out;
+}
 
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background-color: #000;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        z-index: 999;
-        padding: 2rem 0;
-        border-top: 3px solid #ffd700;
-    }
+.nav-menu {
+position: fixed;
+left: -100%;
+top: 80px;
+flex-direction: column;
+background-color: #000;
+width: 100%;
+text-align: center;
+transition: 0.3s;
+box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+z-index: 999;
+padding: 2rem 0;
+border-top: 3px solid #ffd700;
+}
 
-    .nav-menu.active {
-        left: 0;
-    }
+.nav-menu.active {
+left: 0;
+}
 
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 6.5rem 0.75rem 2rem;
-        min-height: auto;
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: hidden;
-        background-attachment: scroll;
-    }
+.hero {
+flex-direction: column;
+text-align: center;
+padding: 7.5rem 0.75rem 2rem;
+min-height: auto;
+width: 100%;
+max-width: 100vw;
+overflow-x: hidden;
+background-attachment: scroll;
+}
 
-    .hero-content {
-        padding: 0 0.5rem;
-        width: 100%;
-        max-width: 100%;
-    }
+.hero-content {
+padding: 0 0.5rem;
+width: 100%;
+max-width: 100%;
+}
 
     .hero-logo-animation {
         width: 250px;
