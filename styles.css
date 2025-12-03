@@ -383,6 +383,34 @@ html {
     border-radius: 6px 6px 0 0;
 }
 
+@media (max-width: 768px) {
+    .nav-dropdown {
+        width: 100%;
+    }
+
+    .nav-dropdown .dropdown-menu {
+        position: static;
+        border-width: 0;
+        box-shadow: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(0);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-dropdown.open .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
+    }
+
+    .dropdown-menu a {
+        text-align: center;
+    }
+}
+
 /* Menu Section Styles */
 .menu {
     background: #121212;

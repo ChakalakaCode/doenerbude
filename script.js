@@ -40,7 +40,18 @@ if (hamburger && navMenu) {
 
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            const dropdown = link.closest('.nav-dropdown');
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+            // Im Mobile-Modus: Klick auf "Info" öffnet/schließt nur das Dropdown
+            if (dropdown && isMobile) {
+                e.preventDefault();
+                dropdown.classList.toggle('open');
+                return;
+            }
+
+            // Alle anderen Links schließen das Mobile-Menü
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
