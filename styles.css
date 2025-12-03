@@ -78,7 +78,7 @@ html {
 }
 
 .logo-circle-new {
-    background: #fff;
+    background: transparent;
     border-radius: 50%;
     width: 100px;
     height: 100px;
@@ -93,13 +93,13 @@ html {
 }
 
 .logo-image {
-    width: 100%;
-    height: 100%;
+    width: 140%;
+    height: 140%;
     object-fit: cover;
     transition: transform 0.3s ease;
     filter: contrast(1.3) brightness(1.2) saturate(1.1);
-    transform: scale(1);
-    clip-path: circle(50%);
+    transform: scale(1.15);
+    clip-path: circle(45% at 50% 50%);
 }
 
 .logo-image:hover {
@@ -1235,12 +1235,12 @@ html {
 }
 
 .hero-logo-image {
-    width: 140%;
-    height: 140%;
+    width: 170%;
+    height: 170%;
     object-fit: cover;
     filter: contrast(1.4) brightness(1.3) saturate(1.2);
-    transform: scale(1.15);
-    clip-path: circle(40% at 50% 50%);
+    transform: scale(1.25);
+    clip-path: circle(38% at 50% 50%);
 }
 
 .hero-subtitle {
