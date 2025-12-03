@@ -4096,8 +4096,12 @@ html {
 
 @media (max-width: 600px) {
     .seo-main {
-        padding-top: 110px;
+        padding-top: 120px;
         padding-bottom: 60px;
+    }
+
+    .seo-hero {
+        padding-top: 60px;
     }
 
     .seo-hero-title {
