@@ -245,7 +245,15 @@ function loadGoogleAnalytics() {
 // Safe event tracking helper
 function trackEvent(eventName, params = {}) {
     if (!window.gtagInitialized || typeof window.gtag !== 'function') return;
-    window.gtag('event', eventName, params);
+
+    const pageInfo = {
+        page_path: window.location.pathname,
+        page_location: window.location.href,
+        page_referrer: document.referrer || null
+    };
+
+    const mergedParams = Object.assign({}, pageInfo, params);
+    window.gtag('event', eventName, mergedParams);
 }
 
 // Cookie consent banner
@@ -427,6 +435,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackEvent('click_seo_city', {
                     city: cityTitle,
                     region
+                });
+            });
+        });
+
+        // Generic tracking for all buttons (außer Cookie-Banner-Buttons)
+        const allButtons = document.querySelectorAll('button');
+        allButtons.forEach(button => {
+            if (button.closest('.cookie-banner')) return;
+
+            button.addEventListener('click', () => {
+                const eventName = button.getAttribute('data-ga-event') || 'click_button';
+                const label = button.getAttribute('data-ga-label') || button.textContent.trim() || button.id || 'unknown_button';
+                const category = button.getAttribute('data-ga-category') || 'button';
+
+                trackEvent(eventName, {
+                    category,
+                    label,
+                    id: button.id || null,
+                    classes: button.className || null,
+                    location: window.location.pathname
+                });
+            });
+        });
+
+        // Generic tracking for all links
+        const allLinks = document.querySelectorAll('a');
+        allLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const href = link.getAttribute('href') || '';
+                const eventName = link.getAttribute('data-ga-event') || 'click_link';
+                const label = link.getAttribute('data-ga-label') || link.textContent.trim() || href || 'unknown_link';
+                const category = link.getAttribute('data-ga-category') || 'link';
+
+                trackEvent(eventName, {
+                    category,
+                    label,
+                    href,
+                    id: link.id || null,
+                    classes: link.className || null,
+                    location: window.location.pathname
                 });
             });
         });
