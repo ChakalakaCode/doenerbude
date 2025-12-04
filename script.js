@@ -76,11 +76,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Video autoplay on scroll
-const video = document.getElementById('restaurantVideo');
-const videoSection = document.querySelector('.restaurant-video');
-const videoSource = video ? video.querySelector('source') : null;
-
+// Video lazy loading: alle Video-Container mit .restaurant-video und .restaurant-video-player unterstützen
 const videoObserverOptions = {
     root: null,
     rootMargin: '0px',
@@ -89,26 +85,34 @@ const videoObserverOptions = {
 
 const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (!video) return;
+        if (!entry.isIntersecting) return;
 
-        if (entry.isIntersecting) {
-            // Quelle erst bei Sichtbarkeit setzen (Lazy Loading)
-            if (videoSource && !videoSource.src) {
-                const dataSrc = videoSource.getAttribute('data-src');
-                if (dataSrc) {
-                    videoSource.src = dataSrc;
-                    video.load();
-                }
+        const section = entry.target;
+        const videoEl = section.querySelector('.restaurant-video-player');
+        if (!videoEl) return;
+
+        const sourceEl = videoEl.querySelector('source');
+        if (!sourceEl) return;
+
+        // Quelle erst bei Sichtbarkeit setzen (Lazy Loading)
+        if (!sourceEl.src) {
+            const dataSrc = sourceEl.getAttribute('data-src');
+            if (dataSrc) {
+                sourceEl.src = dataSrc;
+                videoEl.load();
             }
-
-            // Kein Autoplay mehr: Video startet nur noch, wenn der Nutzer Play klickt
         }
+
+        // Kein Autoplay: Video startet nur, wenn der Nutzer Play klickt
     });
 }, videoObserverOptions);
 
-if (video && videoSection) {
-    videoObserver.observe(videoSection);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const videoSections = document.querySelectorAll('.restaurant-video');
+    videoSections.forEach(section => {
+        videoObserver.observe(section);
+    });
+});
 
 // Header scroll effect
 function handleHeaderScroll() {
