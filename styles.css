@@ -78,28 +78,28 @@ html {
 }
 
 .logo-circle-new {
-    background: #fff;
-    border-radius: 50%;
+    background: transparent;
+    border-radius: 0;
     width: 100px;
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    border: 4px solid #ffd700;
+    box-shadow: none;
+    border: none;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     padding: 0;
 }
 
 .logo-image {
-    width: 105%;
-    height: 105%;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.3s ease;
-    filter: contrast(1.3) brightness(1.2) saturate(1.1);
-    transform: scale(1.03);
-    clip-path: circle(50% at 50% 50%);
+    filter: contrast(1.1) brightness(1.05) saturate(1.05);
+    transform: none;
+    clip-path: none;
 }
 
 .logo-image:hover {
@@ -3512,12 +3512,10 @@ background-attachment: scroll;
     height: 320px;
     max-width: 80vw;
     max-height: 80vw;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 20%, #ffd700 0%, #ffbb00 20%, #000 70%);
-    padding: 10px;
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(255, 215, 0, 0.7);
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3526,10 +3524,10 @@ background-attachment: scroll;
 
 .seo-hero-logo-circle img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    filter: contrast(1.35) brightness(1.2) saturate(1.2);
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+    filter: contrast(1.2) brightness(1.1) saturate(1.1);
 }
 
 .seo-hero-tagline {
