@@ -9,6 +9,10 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.beelen-doenerbude\.de [NC]
 RewriteRule ^(.*)$ https://beelen-doenerbude.de/$1 [L,R=301]
 
+# Redirect index.html to root (SEO fix)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ https://beelen-doenerbude.de/ [L,R=301]
+
 # Security Headers
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
