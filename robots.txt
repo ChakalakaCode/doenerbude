@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://beelen-doenerbude.de/sitemap.xml
+Sitemap: http://beelen-doenerbude.de/sitemap.xml
